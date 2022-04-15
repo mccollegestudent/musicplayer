@@ -1,3 +1,8 @@
+/* 
+put this in that thing in the phpmyadmin thing that lets u run that SQL code that generates stuff? idk how else to explain it man idk SQL
+*/
+
+
 CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
