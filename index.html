@@ -21,12 +21,12 @@
 			<div class="options">
 
 				<button><i class='bx bxs-volume-low' ></i></button> <!-- class calls icons from ipi etc pres - or follow link to see icons available-->
-				<button><i class='bx bx-edit-alt'></i></button>	<!-- add songs to current playlist-->			
+				<button name="editPlaylistBtn" onclick="open_p()"><i class='bx bx-edit-alt'></i></button>	<!-- add songs to current playlist-->			
 				<button><i class='zmdi zmdi-account' ></i></button>			
 			
 				
 			</div>
-			<button onclick="open_p()"><i class='bx bxs-playlist' ></i></button>
+			<button name="playlistsBtn" onclick="open_playlists()"><i class='bx bxs-playlist' ></i></button>
 		</div>
 
 		<div class="playing_part">
@@ -58,18 +58,21 @@
 
 		<!-- playlist songs -->
 		<div class="playlist">  <!-- change this to show only playlist names routed to the edit button-->
-			
+
+				<p style="font-size:x-large"  style="color:orangered;">Paylist Name</p>	
+	
+
 			<div class="p_song active_song">
 				<p id="p_title">song name</p>
 				<p id="p_artist">artist name</p>
-				<button ><i class='bx bx-play' ></i></button>
+				<button ><i class='bx bx-minus' ></i></button>
 			</div>
 
 			
 			<div class="p_song active_song">
 				<p id="p_title">song name</p>
 				<p id="p_artist">artist: name</p>
-				<button><i class='bx bx-play' ></i></button>
+				<button><i class='bx bx-minus' ></i></button>
 				
 			</div>
 
@@ -77,56 +80,70 @@
 			<div class="p_song active_song">
 				<p id="p_title">song name</p>
 				<p id="p_artist">artist name</p>
-				<button><i class= 'bx bx-play' ></i></button>
+				<button><i class= 'bx bx-minus' ></i></button>
 			</div>
 		
 
 			<div class="p_song active_song">
+				<button onclick="open_p()"><i class='zmdi zmdi-arrow-back'></i></button>
 				<button><i class= 'bx bxs-plus-circle' ></i></button>
+
 			</div>
 		</div>
-<!-- similar design for iterating through [playlist songs] and [music Library - with filtering options]
-				playlist songs 
-				<div class="playlist">
-			
+
+<!-- similar design for iterating for [music Library but with filtering options + search bar]-->
+
+				<div class="playlists">
+
 					<div class="p_song active_song">
-						<p id="p_title">song name</p>
-						<p id="p_artist">artist name</p>
-						<button><i class='bx bx-play' ></i></button>
-					</div>
-		
-					
-					<div class="p_song active_song">
-						<p id="p_title">song name</p>
-						<p id="p_artist">artist: name</p>
-						<button><i class='bx bx-play' ></i></button>
+						<p id="p_title">playlist name</p>
+						<button><i class='bx bx-minus' ></i></button>
 						
 					</div>
 		
 					
 					<div class="p_song active_song">
-						<p id="p_title">song name</p>
-						<p id="p_artist">artist name</p>
-						<button><i class= 'bx bx-play' ></i></button>
+						<p id="p_title">playlist name</p>
+						<button><i class='bx bx-minus' ></i></button>
+						
+					</div>
+		
+					
+					<div class="p_song active_song">
+						<p id="p_title">playlist name</p>
+						<button><i class= 'bx bx-minus' ></i></button>
 					</div>
 				
 		
 					<div class="p_song active_song">
+						<button onclick="open_playlists()"><i class='zmdi zmdi-arrow-back'></i></button>
 						<button><i class= 'bx bxs-plus-circle' ></i></button>
+
 					</div>
 				</div>
-			-->				
+						
 	</div>
-	
+
 	   <!--  javascript part -->
 	   <script>
 		let playlist = document.querySelector('.playlist');
+		let playlists = document.querySelector('.playlists');
 		let options = document.querySelector('.options');
 
 		function open_p(){
+
 			playlist.classList.toggle('active');
+	
+			//document.getElementById("playlistsBtn").disabled = true;
 		}
 
+		function open_playlists(){
+			//playlist.classList.toggle('active');
+			playlists.classList.toggle('active3');
+		
+		
+		
+		}
 		function sidebar(){
 			options.classList.toggle('active2');
 		}

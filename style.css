@@ -158,6 +158,7 @@ body{
 	max-height: 100vh;
 	padding: 100px 0 0 0;
 }
+
 .playlist .p_song{
     position: relative;
     width: 80%;
@@ -253,4 +254,84 @@ input[type=range]::-webkit-slider-thumb{
 }
 
 
+
+/*playlist songs*/
+.playlists{
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: #566573;
+	max-height: 0px;
+	overflow: hidden;
+	transition: 0.5s;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.main .active3{
+	max-height: 100vh;
+	padding: 100px 0 0 0;
+}
+.playlists .p_song{
+    position: relative;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    padding: 12px 12px 20px 12px;
+    box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.1);
+}
+.playlists .p_song:not(:first-child){
+	margin-top: 20px;
+}
+.playlists .p_song #p_title{
+	font-size: 20px;
+}
+.playlists .p_song #p_artist{
+	position: absolute;
+	bottom: 6px;
+	left: 15px;
+	font-size: 11px;
+}
+.playlists .p_song button{
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	font-size: 18px;
+	border: none;
+	cursor: pointer;
+	transition: 0.5s;
+	margin: 0 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.08);
+	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2);
+}
+.playlists .p_song:hover{
+   background: #1C2833;
+}
+.playlists .p_song:hover button{
+	background: #FF5722;
+}
+.main .active_song{
+	background: #1C2833;
+	box-shadow: none;
+}
+.playlists .active_song button{
+	background: linear-gradient(to right, #FF5722, #FF7043);
+	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,
+	            0.1px 8px 8px 2px rgba(0,0,0,0.2);
+}
+
+.playlists .active_song button{
+	background: linear-gradient(to right, #FF5722, #FF7043);
+	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,
+	            0.1px 8px 8px 2px rgba(0,0,0,0.2);
+}
 
