@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>modern music player</title>
+	<link rel="stylesheet" href="style.css">
+	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+	<!-- where bx and zmdi pull their resourses -->
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css'>
+	<link rel='stylesheet' href='https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css'><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+	<div class="main">
+		
+		<!-- top bar-->
+		<div class="top_bar">
+			<button onclick="sidebar()"><i class='bx bx-chevron-right'></i></button> <!-- top left button brings nested buttuns-->
+			<div class="options">
+
+				<button><i class='bx bxs-volume-low' ></i></button> <!-- class calls icons from ipi etc pres - or follow link to see icons available-->
+				<button><i class='bx bx-edit-alt'></i></button>	<!-- add songs to current playlist-->			
+				<button><i class='zmdi zmdi-account' ></i></button>			
+			
+				
+			</div>
+			<button onclick="open_p()"><i class='bx bxs-playlist' ></i></button>
+		</div>
+
+		<div class="playing_part">
+			<div class="img">
+				<img src="bg.jpg" alt="img">
+			</div>
+		</div>
+
+		<!-- control part -->
+		<div class="control_part">
+			<div class="song_title">
+				<p>song title</p>
+				<p>artist name</p>
+			</div>
+
+			<div class="control_buttons">
+				<div class="range_slider">
+					<input type="range" min="0" max="100" id="slider" value="0">
+					<p>3:00</p>
+				</div>
+
+				<div class="main_btns">
+					<button id="loop"><i class='zmdi zmdi-repeat' ></i></button>
+					<button id="play_btn"><i class='bx bx-play' ></i></button>
+					<button id="next"><i class='bx bx-skip-next' ></i></button>
+				</div>
+			</div>
+		</div>
+
+		<!-- playlist songs -->
+		<div class="playlist">  <!-- change this to show only playlist names routed to the edit button-->
+			
+			<div class="p_song active_song">
+				<p id="p_title">song name</p>
+				<p id="p_artist">artist name</p>
+				<button ><i class='bx bx-play' ></i></button>
+			</div>
+
+			
+			<div class="p_song active_song">
+				<p id="p_title">song name</p>
+				<p id="p_artist">artist: name</p>
+				<button><i class='bx bx-play' ></i></button>
+				
+			</div>
+
+			
+			<div class="p_song active_song">
+				<p id="p_title">song name</p>
+				<p id="p_artist">artist name</p>
+				<button><i class= 'bx bx-play' ></i></button>
+			</div>
+		
+
+			<div class="p_song active_song">
+				<button><i class= 'bx bxs-plus-circle' ></i></button>
+			</div>
+		</div>
+<!-- similar design for iterating through [playlist songs] and [music Library - with filtering options]
+				playlist songs 
+				<div class="playlist">
+			
+					<div class="p_song active_song">
+						<p id="p_title">song name</p>
+						<p id="p_artist">artist name</p>
+						<button><i class='bx bx-play' ></i></button>
+					</div>
+		
+					
+					<div class="p_song active_song">
+						<p id="p_title">song name</p>
+						<p id="p_artist">artist: name</p>
+						<button><i class='bx bx-play' ></i></button>
+						
+					</div>
+		
+					
+					<div class="p_song active_song">
+						<p id="p_title">song name</p>
+						<p id="p_artist">artist name</p>
+						<button><i class= 'bx bx-play' ></i></button>
+					</div>
+				
+		
+					<div class="p_song active_song">
+						<button><i class= 'bx bxs-plus-circle' ></i></button>
+					</div>
+				</div>
+			-->				
+	</div>
+	
+	   <!--  javascript part -->
+	   <script>
+		let playlist = document.querySelector('.playlist');
+		let options = document.querySelector('.options');
+
+		function open_p(){
+			playlist.classList.toggle('active');
+		}
+
+		function sidebar(){
+			options.classList.toggle('active2');
+		}
+	</script>
+	
+</body>
+</html>
