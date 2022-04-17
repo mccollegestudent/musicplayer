@@ -99,7 +99,6 @@
 								<p id="p_artist">artist name</p>
 								<button ><i class='bx bx-minus' ></i></button>
 							</div>
-
 						-->
 						<tbody>
 					</tr>
@@ -187,7 +186,7 @@
 	//<!--  javascript a particular playlist -->
 
 	
-		var myArray = [
+		var currPlaylistArray = [
 			{'name':'aad', 'artist':'Michael','album':'BadAlbum','genre':'POP', 'year':'1989'},
 			{'name':'baw', 'artist':'Royce','album':'chart','genre':'Hip Hop', 'year':'2010'},
 			{'name':'cad', 'artist':'Michael','album':'BadAlbum','genre':'POP', 'year':'1989'},
@@ -204,13 +203,13 @@
 			
 			var value = $(this).val()
 			console.log('value:', value)
-			var data = searchTable(value, myArray)
+			var data = searchTable(value, currPlaylistArray)
 			buildTable(data)
 		
 		
 		})
 		
-		buildTable(myArray)
+		buildTable(currPlaylistArray)
 		
 		function searchTable(value, data){
 			var filterData = []
