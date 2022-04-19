@@ -73,7 +73,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<button onclick="sidebar()"><i class='bx bx-chevron-right'></i></button> <!-- top left button brings nested buttuns-->
 			<div class="options">
 
-				<button><i class='bx bxs-volume-low' ></i></button> <!-- class calls icons from ipi etc pres - or follow link to see icons available-->
+				<div><button><i class='bx bxs-volume-low' ></i></button><div class="slider_container">
+      				<i class="fa fa-volume-down"></i>
+      				<input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+      				<i class="fa fa-volume-up"></i>
+    				</div>
+				</div> <!-- class calls icons from ipi etc pres - or follow link to see icons available-->
 				<button name="editPlaylistBtn" onclick="open_playlist()"><i class='bx bx-edit-alt'></i></button>	<!-- add songs to current playlist-->			
 				<button><i class='zmdi zmdi-account' ></i></button>			
 			
@@ -82,29 +87,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<button name="playlistsBtn" onclick="open_playlists()"><i class='bx bxs-playlist' ></i></button>
 		</div>
 
-		<div class="playing_part">
-			<div class="img">
-				<img src="bg.jpg" alt="img">
-			</div>
-		</div>
+		<div class="playing_part"><div class="img"></div></div>
 
 <!-- control part -->
 		<div class="control_part">
-			<div class="song_title">
-				<p>song title</p>
-				<p>artist name</p>
-			</div>
-
+			<div class="song_title"></div>
+ 			<div class="artist_name"></div>
 			<div class="control_buttons">
 				<div class="range_slider">
-					<input type="range" min="0" max="100" id="slider" value="0">
-					<p>3:00</p>
+					<div class = "current_time">00:00</div>
+					<input type="range" min="1" max="100" id="slider" class="seek_slider" value="0" onchange="seekTo()">
+					<div class = "duration">00:00</div>
 				</div>
 
 				<div class="main_btns">
 					<button id="loop"><i class='zmdi zmdi-repeat' ></i></button>
-					<button id="play_btn"><i class='bx bx-play' ></i></button>
-					<button id="next"><i class='bx bx-skip-next' ></i></button>
+					<button onclick="playpauseTrack()" class = 'test'><i class='bx bx-play' ></i></button>
+					<button id="next"><i class='bx bx-skip-next' onclick="nextTrack()"></i></button>
 				</div>
 			</div>
 		</div>
@@ -281,6 +280,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		}
 		
 		</script>
-	
+	<script src="music.js"></script>
 </body>
 </html>

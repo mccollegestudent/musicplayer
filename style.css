@@ -307,6 +307,10 @@ input[type=range]::-webkit-slider-thumb{
     padding: 12px 12px 20px 12px;
     box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.1);
 }
+ 
+i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
+    cursor: pointer;
+  }
 .playlists .p_song:not(:first-child){
 	margin-top: 20px;
 }
@@ -319,6 +323,15 @@ input[type=range]::-webkit-slider-thumb{
 	left: 15px;
 	font-size: 11px;
 }
+
+.playpause-track, .prev-track, .next-track {
+    padding: 25px;
+    opacity: 0.8;
+  
+    /* Smoothly transition the opacity */
+    transition: opacity .2s;
+  }
+
 .playlists .p_song button{
 	height: 35px;
 	width: 35px;
