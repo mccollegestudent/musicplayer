@@ -42,7 +42,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <body>
 
+<?php
 
+ require_once "config.php";
+
+ print "scroll all the way down <br><br> Music table testing smh  <br><br>";
+
+ $query = "SELECT * FROM music";
+ foreach ($conn->query($query) as $row) {
+	print "id: " .$row['id'] ."<br>";
+	//print "name: " .$row['name']. "<br>";
+	print "Artist: " .$row['artist']. "<br>";
+	print "Album: " .$row['album']. "<br>";
+	print "Genre: " .$row['genre']. "<br>";
+	print "year: " .$row['yearReleased']. "<br>";
+	print "<br>";
+ }
+
+	  /*
+
+*/
+?>
 
 
 </p>
