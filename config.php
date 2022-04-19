@@ -20,18 +20,7 @@ $dbpass="";
 $db="demo";
 
 $dsn = "mysql:host=$dbhost;dbname=$db";
-
-try{
-  $conn= new PDO($dsn, $dbuser, $dbpass);
-  //echo "You have connected";
-  return $conn;
-}catch(PDOException $e){
-  $error_message = $e->getMessage();
-  echo $error_message;
-  exit();
-}
-
-
+$conn= new PDO($dsn, $dbuser, $dbpass);
 
 
 ?>
