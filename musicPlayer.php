@@ -6,6 +6,7 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+	$username = $_SESSION["username"];
 }
 ?>
 
@@ -43,13 +44,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<body>
 
 		<?php
+			$username = "username";
 
 			require_once "config.php";
 			//include "config.php";
 
 			function printTable($conn){
 				require_once "config.php";
-				$query = "SELECT * FROM music";
+				//$query = "SELECT * FROM music";
+				$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
+				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
+
+				//$stmt = $dbh->prepare("SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = ?")
+				//$stmt->bindParam(s, $username);
+				
+				//$stmt = $pdo->prepare($query);
+				//$stmt->execute([$username]);
+
+				
 
 				foreach ($conn->query($query) as $row) {
 					$index = $row['id'];
@@ -62,6 +74,35 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									'<p id="p_album">    '.$row['album'].'  </p>'.
 									'<p id="p_genre">   '.$row['genre'].'   </p>'.
 									'<p id="p_year">    '.$row['yearReleased'].'</p>'.
+
+									'<input type = "hidden" name = "table" value ="music"/>'.
+									'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
+									'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
+							'</div>		
+							';							
+					print'</form >';  
+				}   
+			}
+
+			function printPlaylists($conn){
+				require_once "config.php";
+				//$query = "SELECT * FROM music";
+				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
+				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
+				$query = "SELECT * FROM playlist P, WHERE P.User = 'username";
+
+				foreach ($conn->query($query) as $row) {
+					$index = $row['id'];
+
+					print'<form action = "updateDB.php" method = "post">';
+						print '
+							<div class="p_song active_song">'.						
+									'<p id="p_title">    '.$row['Playlist_Name'].'   </p>'.
+									/*'<p id="p_artist">    '.$row['artist'].' </p>'.
+									'<p id="p_album">    '.$row['album'].'  </p>'.
+									'<p id="p_genre">   '.$row['genre'].'   </p>'.
+									'<p id="p_year">    '.$row['yearReleased'].'</p>'.
+									*/
 
 									'<input type = "hidden" name = "table" value ="music"/>'.
 									'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
@@ -137,7 +178,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<tr>				
 								<tbody >												
 									<?php
+	
+											//$user = $_SESSION["username"];
+											//echo '$user';
 											printTable($conn);
+											//echo $user;
 										
 									?>	
 								<tbody>
@@ -174,7 +219,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<div id = "d1" >
 					<table class="table table-striped" style="width: 120%; ">
 						<tr>
-							<tbody id="myTable">
+							<tbody>
+								
+								<?php
+										printTable($conn);
+									
+								?>
 
 								<!-- formart used in script for entery (id="myTable") line 234			
 								<div class="p_song active_song">
