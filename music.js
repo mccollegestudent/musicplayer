@@ -16,6 +16,8 @@ let track_index = 0;
 let isPlaying = false;
 let updateTimer;
 
+let loopSong = false;
+
 let curr_track = document.createElement('audio');
 
 let track_list = [
@@ -26,16 +28,16 @@ let track_list = [
       path: "test.mp3"
     },
     {
-      name: "Enthusiast",
-      artist: "Tours",
-      image: "https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-      path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3"
+      name: "test2",
+      artist: "test2",
+      image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
+      path: ""
     },
     {
-      name: "Shipping Lanes",
-      artist: "Chad Crouch",
-      image: "Image URL",
-      path: "Shipping_Lanes.mp3",
+      name: "test3",
+      artist: "test3",
+      image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
+      path: "",
     },
   ];
 
@@ -100,15 +102,26 @@ let track_list = [
   }
 
   function nextTrack() {
-    // Go back to the first track if the
-    // current one is the last in the track list
-    if (track_index < track_list.length - 1)
-      track_index += 1;
-    else track_index = 0;
+    if(loopSong){
+      loadTrack(track_index);
+      playTrack();  
+    }
+    else{
+      // Go back to the first track if the
+      // current one is the last in the track list
+      if (track_index < track_list.length - 1)
+        track_index += 1;
+      else track_index = 0;
     
-    // Load and play the new track
-    loadTrack(track_index);
-    playTrack();
+      // Load and play the new track
+      loadTrack(track_index);
+      playTrack();
+    }
+  }
+
+  function toggleLoopSong(){
+    loopSong = !(loopSong);
+    console.log(loopSong);
   }
 
   function seekTo() {

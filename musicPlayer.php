@@ -72,13 +72,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<div class="top_bar">
 			<button onclick="sidebar()"><i class='bx bx-chevron-right'></i></button> <!-- top left button brings nested buttuns-->
 			<div class="options">
-
-				<div><button><i class='bx bxs-volume-low' ></i></button><div class="slider_container">
+ 					
+				<div class= "volume">
+					<i style="font-size:37px" class='bx bxs-volume-full' ></i></div>
+				 <!-- class calls icons from ipi etc pres - or follow link to see icons available-->
+				<div  class="slider_container">
       				<i class="fa fa-volume-down"></i>
       				<input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
       				<i class="fa fa-volume-up"></i>
     				</div>
-				</div> <!-- class calls icons from ipi etc pres - or follow link to see icons available-->
+
 				<button name="editPlaylistBtn" onclick="open_playlist()"><i class='bx bx-edit-alt'></i></button>	<!-- add songs to current playlist-->			
 				<button><i class='zmdi zmdi-account' ></i></button>			
 			
@@ -101,7 +104,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				</div>
 
 				<div class="main_btns">
-					<button id="loop"><i class='zmdi zmdi-repeat' ></i></button>
+					<button id="loop"><i class='zmdi zmdi-repeat'onclick="toggleLoopSong()" ></i></button>
 					<button onclick="playpauseTrack()" class = 'test'><i class='bx bx-play' ></i></button>
 					<button id="next"><i class='bx bx-skip-next' onclick="nextTrack()"></i></button>
 				</div>
