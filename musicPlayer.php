@@ -44,16 +44,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<body>
 
 		<?php
-			$username = "username";
-
 			require_once "config.php";
 			//include "config.php";
 
+			$globalvar = "Put global in front";
+
+
+			function playlistname($conn){
+				echo "Playlistname: ".$_SESSION["username"] ;
+			}
 			function printTable($conn){
-				require_once "config.php";
-				//$query = "SELECT * FROM music";
-				$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
-				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
+
+			    GLOBAL $globalvar;
+				$essionVar = $_SESSION["username"] ;
+
+				echo "global variable:".$globalvar;
+				echo"<br>";
+				
+
+				echo "Local variable:  ".$essionVar;
+				echo "<br>";
+
+				$name = "music";
+				$id = 1;
+
+				$query = "SELECT * FROM $name";
+		
+				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = $username ";
+				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= $id";
 
 				//$stmt = $dbh->prepare("SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = ?")
 				//$stmt->bindParam(s, $username);
@@ -84,37 +102,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				}   
 			}
 
-			function printPlaylists($conn){
-				require_once "config.php";
-				//$query = "SELECT * FROM music";
-				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
-				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
-				$query = "SELECT * FROM playlist P, WHERE P.User = 'username";
+				function printPlaylists($conn){
+					require_once "config.php";
+					//$query = "SELECT * FROM music";
+					//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
+					//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
+					$query = "SELECT * FROM playlist P, WHERE P.User = 'username";
 
-				foreach ($conn->query($query) as $row) {
-					$index = $row['id'];
+					foreach ($conn->query($query) as $row) {
+						$index = $row['id'];
 
-					print'<form action = "updateDB.php" method = "post">';
-						print '
-							<div class="p_song active_song">'.						
-									'<p id="p_title">    '.$row['Playlist_Name'].'   </p>'.
-									/*'<p id="p_artist">    '.$row['artist'].' </p>'.
-									'<p id="p_album">    '.$row['album'].'  </p>'.
-									'<p id="p_genre">   '.$row['genre'].'   </p>'.
-									'<p id="p_year">    '.$row['yearReleased'].'</p>'.
-									*/
+						print'<form action = "updateDB.php" method = "post">';
+							print '
+								<div class="p_song active_song">'.						
+										'<p id="p_title">    '.$row['Playlist_Name'].'   </p>'.
+										/*'<p id="p_artist">    '.$row['artist'].' </p>'.
+										'<p id="p_album">    '.$row['album'].'  </p>'.
+										'<p id="p_genre">   '.$row['genre'].'   </p>'.
+										'<p id="p_year">    '.$row['yearReleased'].'</p>'.
+										*/
 
-									'<input type = "hidden" name = "table" value ="music"/>'.
-									'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
-									'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
-							'</div>		
-							';							
-					print'</form >';  
-				}   
-			}
+										'<input type = "hidden" name = "table" value ="music"/>'.
+										'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
+										'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
+								'</div>		
+								';							
+						print'</form >';  
+					}   
+				}
 		?>
 
-			<div class="main">
+	<div class="main">
 				
 		<!-- top bar-->
 				<div class="top_bar">
@@ -163,7 +181,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<!-- playlist songs -->
 				<div class="playlist">  <!-- change this to show only playlist names routed to the edit button-->
 					
-					<p style="font-size:x-large"  style="color:orangered;">:Current Paylist Name</p>	
+					<p style="font-size:x-large"  style="color:orangered;"> <?php playlistname($conn) ?></p>	
 					<div class = "row">
 						<div class = "col"> 
 							<div class = "card body">
@@ -178,11 +196,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<tr>				
 								<tbody >												
 									<?php
-	
-											//$user = $_SESSION["username"];
-											//echo '$user';
+
 											printTable($conn);
-											//echo $user;
 										
 									?>	
 								<tbody>
@@ -194,17 +209,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 					<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
 						<button onclick="open_playlist()"><i class='zmdi zmdi-arrow-back'></i></button>
-						<button id="addToPlaylistBtn"><i class= 'bx bxs-plus-circle' ></i></button>
+						<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
 					</div>
 				
 
 						
 				</div>
 
-		<!-- similar design for iterating for [music Library but with filtering options + search bar]-->
+			<!-- playlist songs -->
 
 
-		<div class="playlists"> <!-- change this to show only playlist names routed to the edit button-->
+			<div class="playlists"> <!-- change this to show only playlist names routed to the edit button-->
 					
 				<p style="font-size:x-large"  style="color:orangered;">playlists</p>	
 				<div class = "row">
@@ -242,17 +257,69 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 				<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
 						<button onclick="location.href='musicPlayer.php'"><i class='zmdi zmdi-arrow-back'></i> </button>
-						<button><i class= 'bx bxs-plus-circle' ></i></button>
+						<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
 
 				</div>
 						
-		</div>
+			</div>
 
+			<!-- music Library songs -->
 
+			<div class="musiclist"> 
+					
+					<p style="font-size:x-large"  style="color:orangered;">musiclist</p>	
+					<div class = "row">
+						<div class = "col"> 
+							<div class = "card body">
+								<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
+								<br><br>
+							</div>
+						</div>
+					</div>	
+					
+					<div id = "d1" >
+						<table class="table table-striped" style="width: 120%; ">
+							<tr>
+							<tbody id="myTable">
+						
+							<!--<table class="table table-striped" style="width: 120%; ">-->
+								
+								<?php
+										//printTable($conn);
+									
+								?>
+
+								<!-- formart used in script for entery (id="myTable") line 234			
+								<div class="p_song active_song">
+									<p id="p_title">song name</p>
+									<p id="p_artist">artist name</p>
+									<button ><i class='bx bx-minus' ></i></button>
+								</div>
+								-->
+							<tbody>					
+
+						</tr>
+					</table>			
+	
+							</tr>
+						</table>
+	
+					</div>
+	
+					<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
+							<button onclick="location.href='musicPlayer.php'"><i class='zmdi zmdi-arrow-back'></i> </button>
+							<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
+	
+					</div>
+							
+			</div>
+	</div>
 			
 		<!--  javascript switching pages -->
 
 			<script>
+
+				let musiclist = document.querySelector('.musiclist');
 				let playlist = document.querySelector('.playlist');
 				let playlists = document.querySelector('.playlists');
 				let options = document.querySelector('.options');
@@ -267,11 +334,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				}
 
 				function open_playlists(){
-					playlist.classList.toggle('active');
-					playlists.classList.toggle('active3');
+					//playlist.classList.toggle('active');
+					playlists.classList.toggle('active');
 				
 				
 				
+				}
+
+				function open_musiclist(){
+					musiclist.classList.toggle('active');
+			
 				}
 
 				function open_removeSong(index){
@@ -302,7 +374,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			
 				
 				$('#searchBtn').on('keyup', function(){
-					currPlaylistArray.pu
+	
 					var value = $(this).val()
 					console.log('value:', value)
 					var data = searchTable(value, currPlaylistArray)
