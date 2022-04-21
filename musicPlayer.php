@@ -191,6 +191,35 @@ function updatePlaylist($input){
 
 				}
 			}
+
+			function printSongs($conn){
+				
+				
+				
+				GLOBAL $current_playlist;
+				$query = "SELECT * FROM music";
+				
+
+				foreach ($conn->query($query) as $row) {
+					$index = $row['id'];
+
+					print'<form action = "updateDB.php" method = "post">';
+						print '
+							<div class="p_song active_song">'.						
+									'<p id="p_title">    '.$row['name'].'   </p>'.
+									'<p id="p_artist">    '.$row['artist'].' </p>'.
+									'<p id="p_album">    '.$row['album'].'  </p>'.
+									'<p id="p_genre">   '.$row['genre'].'   </p>'.
+									'<p id="p_year">    '.$row['yearReleased'].'</p>'.
+
+									'<input type = "hidden" name = "table" value ="music"/>'.
+									'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
+									'<button name = "addBtn'.$index.'"'.'><i class='."'".'bx bxs-plus-circle'."'".' ></i></button>'.
+							'</div>		
+							';							
+					print'</form >';  
+				}   
+			}
 	?>
 
 
@@ -260,7 +289,7 @@ function updatePlaylist($input){
 							<tr>				
 								<tbody >												
 									<?php
-
+											//echo "This is the new one";
 											printTable($conn);
 										
 									?>	
@@ -344,12 +373,12 @@ function updatePlaylist($input){
 					<div id = "d1" >
 						<table class="table table-striped" style="width: 120%; ">
 							<tr>
-							<tbody id="myTable">
+							<tbody>
 						
 							<!--<table class="table table-striped" style="width: 120%; ">-->
 								
 								<?php
-										//printTable($conn);
+										printSongs($conn);
 									
 								?>
 

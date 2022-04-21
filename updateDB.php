@@ -5,6 +5,9 @@
 <html>
   <body>
     <?php
+
+        $current_playlist = $_SESSION['last_playlist'];
+
         $index = $_POST["index"];
         $table = $_POST['table'];
 
