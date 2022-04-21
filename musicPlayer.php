@@ -69,7 +69,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				$id = 1;
 
 				$query = "SELECT * FROM $name";
-		
+				
+				//$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.user = '$essionVar'";
+				
 				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = $username ";
 				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= $id";
 
@@ -102,34 +104,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				}   
 			}
 
-				function printPlaylists($conn){
-					require_once "config.php";
-					//$query = "SELECT * FROM music";
-					//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
-					//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
-					$query = "SELECT * FROM playlist P, WHERE P.User = 'username";
+			function printPlaylists($conn){
 
-					foreach ($conn->query($query) as $row) {
-						$index = $row['id'];
+				$essionVar = $_SESSION["username"] ;
 
-						print'<form action = "updateDB.php" method = "post">';
-							print '
-								<div class="p_song active_song">'.						
-										'<p id="p_title">    '.$row['Playlist_Name'].'   </p>'.
-										/*'<p id="p_artist">    '.$row['artist'].' </p>'.
-										'<p id="p_album">    '.$row['album'].'  </p>'.
-										'<p id="p_genre">   '.$row['genre'].'   </p>'.
-										'<p id="p_year">    '.$row['yearReleased'].'</p>'.
-										*/
+				require_once "config.php";
+				//$query = "SELECT * FROM music";
+				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
+				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
+				$query = "SELECT * FROM playlist P, WHERE P.User = '$essionVar'";
 
-										'<input type = "hidden" name = "table" value ="music"/>'.
-										'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
-										'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
-								'</div>		
-								';							
-						print'</form >';  
-					}   
-				}
+				foreach ($conn->query($query) as $row) {
+					$index = $row['id'];
+					print'<form action = "updateDB.php" method = "post">';
+						print '
+							<div class="p_song active_song">'.						
+									'<p id="p_title">    '.$row['Playlist_Name'].'   </p>'.
+									/*'<p id="p_artist">    '.$row['artist'].' </p>'.
+									'<p id="p_album">    '.$row['album'].'  </p>'.
+									'<p id="p_genre">   '.$row['genre'].'   </p>'.
+									'<p id="p_year">    '.$row['yearReleased'].'</p>'.
+									*/
+
+									'<input type = "hidden" name = "table" value ="music"/>'.
+									'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
+									'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
+
+							'</div>		
+							';							
+					print'</form >';  
+				}   
+			}
 		?>
 
 	<div class="main">
@@ -237,7 +242,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<tbody>
 								
 								<?php
-										printTable($conn);
+										printPlaylists($conn);
 									
 								?>
 
