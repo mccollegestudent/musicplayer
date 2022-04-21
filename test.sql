@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2022 at 03:42 AM
+-- Generation Time: Apr 21, 2022 at 04:02 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.1.32
 
@@ -74,6 +74,30 @@ INSERT INTO `playlist` (`Playlist_Id`, `User`, `Playlist_Name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `playlist_contents`
+--
+
+CREATE TABLE `playlist_contents` (
+  `Playlist_Id` int(11) NOT NULL,
+  `Song_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `playlist_contents`
+--
+
+INSERT INTO `playlist_contents` (`Playlist_Id`, `Song_Id`) VALUES
+(1, 9),
+(1, 1),
+(2, 8),
+(2, 10),
+(3, 1),
+(3, 2),
+(3, 8);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -122,6 +146,13 @@ ALTER TABLE `playlist`
   ADD KEY `User` (`User`);
 
 --
+-- Indexes for table `playlist_contents`
+--
+ALTER TABLE `playlist_contents`
+  ADD KEY `Playlist Id` (`Playlist_Id`),
+  ADD KEY `Song Id` (`Song_Id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -161,6 +192,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `playlist`
   ADD CONSTRAINT `User Id` FOREIGN KEY (`User`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `playlist_contents`
+--
+ALTER TABLE `playlist_contents`
+  ADD CONSTRAINT `Playlist Id` FOREIGN KEY (`Playlist_Id`) REFERENCES `playlist` (`Playlist_Id`),
+  ADD CONSTRAINT `Song Id` FOREIGN KEY (`Song_Id`) REFERENCES `music` (`id`);
 
 --
 -- Constraints for table `users`
