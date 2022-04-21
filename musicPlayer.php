@@ -75,6 +75,7 @@ function updatePlaylist($input){
 
 				echo "Playlistname: ".$playlist_name;
 			}
+			//PHP Function to print songs in current playlist
 			function printTable($conn){
 				//echo $_SESSION["last_playlist"];
 				//echo "<br>";
@@ -94,6 +95,7 @@ function updatePlaylist($input){
 				$id = 1;
 
 				GLOBAL $current_playlist;
+				$current_playlist = $_SESSION['last_playlist'];
 				//$query = "SELECT * FROM $name";
 				
 				$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND C.Playlist_Id= '$current_playlist' AND P.user = '$essionVar'";
@@ -129,7 +131,7 @@ function updatePlaylist($input){
 					print'</form >';  
 				}   
 			}
-
+			//PHP Function for displaying playlists of the user
 			function printPlaylists($conn){
 				//echo "This is the playlist";
 				$essionVar = $_SESSION["username"] ;
@@ -151,47 +153,19 @@ function updatePlaylist($input){
 
                     print'<form action = "updateDB.php" method = "post">';
                         print '
-                            <div class="p_song active_song" name = "updatePlaylist'.$index.'"'.'">'.
+                            <div class="p_song active_song" >'.
                                     '<p id="p_title">    '.$row['Playlist_Name'].' </p>'.
 
                                     '<input type = "hidden" name = "table" value ="music"/>'.
-                                    //'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
-                                    //'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
+                                    '<input type = "hidden" name = "index" value ="'.$index.'"/>'.
+                                    '<button name = "updatePlaylist'.$index.'"'.'"><i class='."'".'bx bx-minus'."'".' ></i></button>'.
                             '</div>
                             ';
                     print'</form >';
 					
                 }   
 			}
-
-			function printPlaylists2($conn){
-				GLOBAL $globalvar;
-				$essionVar = $_SESSION["username"] ;
-
-				echo "should work:".$globalvar;
-				echo"<br>";
-
-
-				$name = "music";
-				$id = 1;
-
-				//$query = "SELECT * FROM $name";
-				$query = "SELECT * FROM playlist WHERE User = '$essionVar'";
-
-
-
-
-				foreach ($conn->query($query) as $row) {
-
-
-						echo $row['Playlist_Name'];
-						//echo $row['name'];
-
-						echo"<br><br>";
-
-				}
-			}
-
+			//PHP Function for displaying all songs in database
 			function printSongs($conn){
 				
 				
@@ -226,7 +200,11 @@ function updatePlaylist($input){
 
 
 	<div class="main">
-				
+		<!--<?php
+		echo '<br>';
+		echo $current_playlist;
+		?>-->
+
 		<!-- top bar-->
 				<div class="top_bar">
 
@@ -349,7 +327,7 @@ function updatePlaylist($input){
 				</div>
 
 				<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
-						<button onclick="location.href='musicPlayer.php'"><i class='zmdi zmdi-arrow-back'></i> </button>
+						<button onclick="open_playlists()"><i class='zmdi zmdi-arrow-back'></i> </button>
 						<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
 
 				</div>
