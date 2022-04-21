@@ -8,6 +8,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 	$username = $_SESSION["username"];
 }
+
+$current_playlist = $_SESSION["last_playlist"];
+
+
+function updatePlaylist($input){
+	global $current_playlist;
+	$current_playlist = $input;
+}
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,26 +64,39 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
 			function playlistname($conn){
-				echo "Playlistname: ".$_SESSION["username"] ;
+				GLOBAL $globalvar;
+				GLOBAL $current_playlist;
+
+
+				$query = "SELECT * FROM playlist WHERE Playlist_Id = '$current_playlist'";
+				foreach ($conn->query($query) as $result) {
+					$playlist_name = $result['Playlist_Name'];
+				}
+
+				echo "Playlistname: ".$playlist_name;
 			}
 			function printTable($conn){
+				//echo $_SESSION["last_playlist"];
+				//echo "<br>";
+				//echo $_SESSION["last_song"];
 
 			    GLOBAL $globalvar;
 				$essionVar = $_SESSION["username"] ;
 
-				echo "global variable:".$globalvar;
-				echo"<br>";
+				//echo "global variable:".$globalvar;
+				//echo"<br>";
 				
 
-				echo "Local variable:  ".$essionVar;
-				echo "<br>";
+				//echo "Local variable:  ".$essionVar;
+				//echo "<br>";
 
 				$name = "music";
 				$id = 1;
 
-				$query = "SELECT * FROM $name";
+				GLOBAL $current_playlist;
+				//$query = "SELECT * FROM $name";
 				
-				//$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.user = '$essionVar'";
+				$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND C.Playlist_Id= '$current_playlist' AND P.user = '$essionVar'";
 				
 				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = $username ";
 				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= $id";
@@ -105,37 +131,70 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			}
 
 			function printPlaylists($conn){
-
+				//echo "This is the playlist";
 				$essionVar = $_SESSION["username"] ;
 
 				require_once "config.php";
 				//$query = "SELECT * FROM music";
 				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
 				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
-				$query = "SELECT * FROM playlist P, WHERE P.User = '$essionVar'";
+				$query = "SELECT * FROM playlist WHERE User = '$essionVar'";
+
+				
 
 				foreach ($conn->query($query) as $row) {
-					$index = $row['id'];
-					print'<form action = "updateDB.php" method = "post">';
-						print '
-							<div class="p_song active_song">'.						
-									'<p id="p_title">    '.$row['Playlist_Name'].'   </p>'.
-									/*'<p id="p_artist">    '.$row['artist'].' </p>'.
-									'<p id="p_album">    '.$row['album'].'  </p>'.
-									'<p id="p_genre">   '.$row['genre'].'   </p>'.
-									'<p id="p_year">    '.$row['yearReleased'].'</p>'.
-									*/
+                   // echo 1;
+					$index = $row['Playlist_Id'];
+					$p_id_set = $row['Playlist_Id'];
 
-									'<input type = "hidden" name = "table" value ="music"/>'.
-									'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
-									'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
 
-							'</div>		
-							';							
-					print'</form >';  
-				}   
+
+                    print'<form action = "updateDB.php" method = "post">';
+                        print '
+                            <div class="p_song active_song" name = "updatePlaylist'.$index.'"'.'">'.
+                                    '<p id="p_title">    '.$row['Playlist_Name'].' </p>'.
+
+                                    '<input type = "hidden" name = "table" value ="music"/>'.
+                                    //'<input type = "hidden" name = "index" value ="'.$index.'"/>'.
+                                    //'<button name = "deleteBtn'.$index.'"'.'><i class='."'".'bx bx-minus'."'".' ></i></button>'.
+                            '</div>
+                            ';
+                    print'</form >';
+					
+                }   
 			}
-		?>
+
+			function printPlaylists2($conn){
+				GLOBAL $globalvar;
+				$essionVar = $_SESSION["username"] ;
+
+				echo "should work:".$globalvar;
+				echo"<br>";
+
+
+				$name = "music";
+				$id = 1;
+
+				//$query = "SELECT * FROM $name";
+				$query = "SELECT * FROM playlist WHERE User = '$essionVar'";
+
+
+
+
+				foreach ($conn->query($query) as $row) {
+
+
+						echo $row['Playlist_Name'];
+						//echo $row['name'];
+
+						echo"<br><br>";
+
+				}
+			}
+	?>
+
+
+
 
 	<div class="main">
 				
@@ -431,6 +490,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					table.innerHTML += row
 					}
 				}
+				
+				
 				
 				</script>
 		

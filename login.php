@@ -58,11 +58,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Password is correct, so start a new session
                             session_start();
                             
+                            $query = "SELECT * FROM users WHERE username = '$username'";
+                            
+                            foreach ($conn->query($query) as $result) {
+                                $_SESSION["last_song"] = $result['last_song'];
+                                $_SESSION["last_playlist"] = $result['last_playlist'];
+                            }
+
+
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
+                            //getLocation();
+
                             // Redirect user to music player page
                             header("location: musicPlayer.php");
                         } else{
@@ -147,5 +157,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
     </div>
+
+    <!--
+    <script>
+        var x = document.getElementById("demo");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+        }
+
+
+
+    </script>
+    */
+    -->
+
 </body>
 </html>
+
+
+
+
+

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 03:01 AM
+-- Generation Time: Apr 21, 2022 at 03:42 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.1.32
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `music` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `name` varchar(50) NOT NULL,
   `artist` varchar(50) NOT NULL,
   `album` varchar(50) NOT NULL,
   `genre` varchar(50) NOT NULL,
@@ -67,28 +67,9 @@ CREATE TABLE `playlist` (
 
 INSERT INTO `playlist` (`Playlist_Id`, `User`, `Playlist_Name`) VALUES
 (1, 'username', 'Vibes'),
-(2, 'b', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `playlist_contents`
---
-
-CREATE TABLE `playlist_contents` (
-  `Playlist_Id` int(11) NOT NULL,
-  `Song_Id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `playlist_contents`
---
-
-INSERT INTO `playlist_contents` (`Playlist_Id`, `Song_Id`) VALUES
-(1, 9),
-(1, 1),
-(2, 8),
-(2, 10);
+(2, 'b', 'Fill'),
+(3, 'username', 'Uhh'),
+(4, 'filler', 'Dab');
 
 -- --------------------------------------------------------
 
@@ -100,17 +81,21 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `last_song` varchar(50) NOT NULL,
+  `last_position_lat` float NOT NULL,
+  `last_position_long` float NOT NULL,
+  `last_playlist` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(2, 'b', '$2y$10$hriax3Yyovp.Jy3mFhUU9uhMFD747jBiWTCdgQCbOG40iTjwGliwq', '2022-04-17 23:41:34'),
-(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28'),
-(4, 'filler', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-19 19:55:10');
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `last_song`, `last_position_lat`, `last_position_long`, `last_playlist`) VALUES
+(2, 'b', '$2y$10$hriax3Yyovp.Jy3mFhUU9uhMFD747jBiWTCdgQCbOG40iTjwGliwq', '2022-04-17 23:41:34', 'All Star', 0, 0, 2),
+(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28', 'All Star', 0, 0, 1),
+(4, 'filler', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-19 19:55:10', 'All Star', 0, 0, 4);
 
 --
 -- Indexes for dumped tables
@@ -125,7 +110,8 @@ ALTER TABLE `music`
   ADD UNIQUE KEY `album` (`album`),
   ADD UNIQUE KEY `genre` (`genre`),
   ADD UNIQUE KEY `yearReleased` (`yearReleased`),
-  ADD UNIQUE KEY `path` (`path`);
+  ADD UNIQUE KEY `path` (`path`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `playlist`
@@ -136,18 +122,13 @@ ALTER TABLE `playlist`
   ADD KEY `User` (`User`);
 
 --
--- Indexes for table `playlist_contents`
---
-ALTER TABLE `playlist_contents`
-  ADD KEY `Playlist Id` (`Playlist_Id`),
-  ADD KEY `Song Id` (`Song_Id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `Last Song` (`last_song`),
+  ADD KEY `Last Playlist` (`last_playlist`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -163,7 +144,7 @@ ALTER TABLE `music`
 -- AUTO_INCREMENT for table `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `Playlist_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Playlist_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -182,11 +163,11 @@ ALTER TABLE `playlist`
   ADD CONSTRAINT `User Id` FOREIGN KEY (`User`) REFERENCES `users` (`username`);
 
 --
--- Constraints for table `playlist_contents`
+-- Constraints for table `users`
 --
-ALTER TABLE `playlist_contents`
-  ADD CONSTRAINT `Playlist Id` FOREIGN KEY (`Playlist_Id`) REFERENCES `playlist` (`Playlist_Id`),
-  ADD CONSTRAINT `Song Id` FOREIGN KEY (`Song_Id`) REFERENCES `music` (`id`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `Last Playlist` FOREIGN KEY (`last_playlist`) REFERENCES `playlist` (`Playlist_Id`),
+  ADD CONSTRAINT `Last Song` FOREIGN KEY (`last_song`) REFERENCES `music` (`name`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
