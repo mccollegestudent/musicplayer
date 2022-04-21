@@ -109,7 +109,7 @@ CREATE TABLE `users` (
   `last_song` varchar(50) NOT NULL,
   `last_position_lat` float NOT NULL,
   `last_position_long` float NOT NULL,
-  `last_playlist` int(11) NOT NULL
+  `last_playlist` int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
