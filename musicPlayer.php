@@ -6,9 +6,11 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+	GLOBAL $username;
 	$username = $_SESSION["username"];
 }
 
+GLOBAL $current_playlist;
 $current_playlist = $_SESSION["last_playlist"];
 
 if($current_playlist = Null){
@@ -21,7 +23,7 @@ function updatePlaylist($input){
 	$current_playlist = $input;
 }
 
-
+GLOBAL $playlist_name;
 
 
 
@@ -65,19 +67,17 @@ function updatePlaylist($input){
 			//include "config.php";
 
 			$globalvar = "Put global in front";
+			GLOBAL $username;
 
+			$query = "SELECT * FROM playlist WHERE Playlist_Id = '$current_playlist'";
+			foreach ($conn->query($query) as $result) {
+				$_SESSION["Playlist_Name"] = $result['Playlist_Name'];
+			}
 
 			function playlistname($conn){
-				GLOBAL $globalvar;
-				GLOBAL $current_playlist;
 				GLOBAL $playlist_name;
-
-				$query = "SELECT * FROM playlist WHERE Playlist_Id = '$current_playlist'";
-				foreach ($conn->query($query) as $result) {
-					$playlist_name = $result['Playlist_Name'];
-				}
-
-				echo "Playlistname: ".$playlist_name;
+				GLOBAL $username;
+				echo "Playlistname: ".$_SESSION["Playlist_Name"];
 			}
 			//PHP Function to print songs in current playlist
 			function printSelectedPlaylist($conn){
@@ -260,7 +260,7 @@ function updatePlaylist($input){
 					<div class = "row">
 						<div class = "col"> 
 							<div class = "card body">
-								<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
+								<!--<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">-->
 								<br><br>
 							</div>
 						</div>

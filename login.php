@@ -64,13 +64,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $_SESSION["last_song"] = $result['last_song'];
                                 $_SESSION["last_playlist"] = $result['last_playlist'];
                             }
+                            $temp = $_SESSION["last_playlist"];
 
+                            $query = "SELECT * FROM playlist WHERE User = '$username' AND Playlist_Id = '$temp'";
+                            foreach ($conn->query($query) as $result) {
+                                $_SESSION["Playlist_Name"] = $result['Playlist_Name'];
+                            }
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
-                            
                             //getLocation();
 
                             // Redirect user to music player page

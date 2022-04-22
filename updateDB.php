@@ -31,6 +31,12 @@
           $conn->query($sql);
 
           $_SESSION["last_playlist"] = $index;
+
+          $query = "SELECT * FROM playlist WHERE User = '$current_user' AND Playlist_Id = '$index'";
+          foreach ($conn->query($query) as $result) {
+            $_SESSION["Playlist_Name"] = $result['Playlist_Name'];
+          }
+          echo $_SESSION["Playlist_Name"];
           //echo $_SESSION["last_playlist"];
         }
 
