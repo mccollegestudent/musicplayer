@@ -60,9 +60,14 @@ GLOBAL $playlist_name;
 			}
 
 			function playlistname($conn){
-				GLOBAL $playlist_name;
-				GLOBAL $username;
-				echo $_SESSION["Playlist_Name"];
+
+				if(isset($_SESSION["Playlist_Name"])){
+					GLOBAL $playlist_name;
+					GLOBAL $username;
+					echo $_SESSION["Playlist_Name"];
+				}else{
+					echo "No Playlist Selected";
+				}
 			}
 
 			//PHP Function to print songs in current playlist
@@ -241,7 +246,11 @@ GLOBAL $playlist_name;
 
 					<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
 						<button onclick="open_playlist()"><i class='zmdi zmdi-arrow-back'></i></button>
-						<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
+
+						<?php 	
+							if(isset($_SESSION["Playlist_Name"]))
+								echo '<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= '.'bx bxs-plus-circle'.' ></i></button>';
+							?>
 					</div>
 				
 
