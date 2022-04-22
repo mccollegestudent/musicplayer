@@ -80,7 +80,7 @@ function updatePlaylist($input){
 				echo "Playlistname: ".$playlist_name;
 			}
 			//PHP Function to print songs in current playlist
-			function printTable($conn){
+			function printSelectedPlaylist($conn){
 				//echo $_SESSION["last_playlist"];
 				//echo "<br>";
 				//echo $_SESSION["last_song"];
@@ -272,7 +272,7 @@ function updatePlaylist($input){
 								<tbody >												
 									<?php
 											//echo "This is the new one";
-											printTable($conn);
+											printSelectedPlaylist($conn);
 										
 									?>	
 								<tbody>
