@@ -18,7 +18,9 @@ let updateTimer;
 
 let loopSong = false;
 
+
 let curr_track = document.createElement('audio');
+let next_track = document.createElement('audio');
 
   function loadTrack(track_index) {
     // Clear the previous seek timer
@@ -28,7 +30,9 @@ let curr_track = document.createElement('audio');
     // Load a new track
     curr_track.src = paths[track_index];
     curr_track.load();
-    
+    next_track.src = paths[(track_index+1) % namee.length];
+    next_track.load();
+
     // Update details of the track
     track_art.style.backgroundImage = 
        "url(" + image[track_index] + ")";
@@ -92,6 +96,10 @@ let curr_track = document.createElement('audio');
       else track_index = 0;
     
       // Load and play the new track
+      let temp_track = curr_track;
+      curr_track = next_track;
+      next_track = temp_track;
+
       loadTrack(track_index);
       playTrack();
     }
