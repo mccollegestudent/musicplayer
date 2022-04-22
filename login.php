@@ -146,7 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <p></p>
     <div class="wrapper">
         <h2>Login</h2>
-        <p>Please fill in your credentials to login.<?php echo $last_lat?></p>
+        <p>Please fill in your credentials to login.</p>
 
         <?php 
         if(!empty($login_err)){

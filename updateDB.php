@@ -90,6 +90,14 @@
             $_SESSION["last_playlist"] = $result['Playlist_Id'];
             $_SESSION["Playlist_Name"] = $result['Playlist_Name'];
           }
+
+          $last = $_SESSION["last_playlist"];
+
+
+          $sql = "UPDATE users SET last_playlist = '$last' WHERE username = '$current_user'";
+          $conn->query($sql);
+
+
           echo "New Id is ".$_SESSION["last_playlist"];
         }
 
