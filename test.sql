@@ -38,12 +38,12 @@ CREATE TABLE `music` (
 
 INSERT INTO `music` (`id`, `name`, `artist`, `album`, `genre`, `yearReleased`, `path`, `created_at`) VALUES
 (1, 'Never Gonna Give You Up', 'Rick Astley', 'Whenever You Need Somebody', 'Pop', '1987', 'MusicLibrary\\Never Gonnna Give You Up.mp3', '2022-04-21 21:34:28'),
-(2, 'Sandstorm', 'Darude', 'Before The Storm', 'EDM', '2000', 'MusicLibrary\\Sandstorm', '2022-04-21 21:38:01'),
-(3, 'All Star', 'Smash Mouth', 'Astro Lounge', 'Pop', '1999', 'MusicLibrary\\All Star', '2022-04-21 21:41:15'),
-(4, 'Blue', 'Eiffel 65', 'Blue (Da Ba Dee)', 'Pop', '1998', 'MusicLibrary\\Blue', '2022-04-21 21:42:41'),
-(5, 'Carmelldansen', 'Caramell', 'Supergot', 'Pop', '2001', 'MusicLibrary\\Carmelldansen', '2022-04-21 21:44:54'),
+(2, 'Sandstorm', 'Darude', 'Before The Storm', 'EDM', '2000', 'MusicLibrary\\Sandstorm.mp3', '2022-04-21 21:38:01'),
+(3, 'All Star', 'Smash Mouth', 'Astro Lounge', 'Pop', '1999', 'MusicLibrary\\All Star.mp3', '2022-04-21 21:41:15'),
+(4, 'Blue', 'Eiffel 65', 'Blue (Da Ba Dee)', 'Pop', '1998', 'MusicLibrary\\Blue.mp3', '2022-04-21 21:42:41'),
+(5, 'Carmelldansen', 'Caramell', 'Supergot', 'Pop', '2001', 'MusicLibrary\\Carmelldansen.mp3', '2022-04-21 21:44:54'),
 (6, 'Nuthin', 'Lacrae', 'Anomaly', 'Rap', '2014', 'MusicLibrary\\Nuthin', '2022-04-21 21:54:32'),
-(7, 'I\'ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'MusicLibrary\\I\'ll Find You.mp3', '2022-04-21 21:54:32'),
+(7, 'I''ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'MusicLibrary\\I''ll Find You.mp3', '2022-04-21 21:54:32'),
 (8, 'This is Life', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'MusicLibrary\\This is Life.mp3', '2022-04-21 21:54:32'),
 (9, 'Yes Song', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'MusicLibrary\\Yes Song.mp3', '2022-04-21 21:54:32'),
 (10, 'Diamonds', 'GAMVI', 'Diamonds', 'Dance', '2017', 'MusicLibrary\\Diamonds.mp3', '2022-04-21 21:54:32'),
