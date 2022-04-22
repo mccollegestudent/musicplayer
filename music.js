@@ -26,14 +26,14 @@ let curr_track = document.createElement('audio');
     resetValues();
     
     // Load a new track
-    curr_track.src = track_list[track_index].path;
+    curr_track.src = paths[track_index];
     curr_track.load();
     
     // Update details of the track
     track_art.style.backgroundImage = 
-       "url(" + track_list[track_index].image + ")";
-    track_name.textContent = track_list[track_index].name;
-    track_artist.textContent = track_list[track_index].artist;
+       "url(" + image[track_index] + ")";
+    track_name.textContent = namee[track_index];
+    track_artist.textContent = artist[track_index];
     
 
     // Set an interval of 1000 milliseconds
@@ -87,7 +87,7 @@ let curr_track = document.createElement('audio');
     else{
       // Go back to the first track if the
       // current one is the last in the track list
-      if (track_index < track_list.length - 1)
+      if (track_index < namee.length - 1)
         track_index += 1;
       else track_index = 0;
     

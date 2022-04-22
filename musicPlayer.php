@@ -436,7 +436,41 @@ GLOBAL $playlist_name;
 
 			//<!--  javascript a particular playlist -->
 
-			
+		
+			<?php
+	
+	$test = $_SESSION["username"];
+	$currentPL = $_SESSION["last_playlist"];
+	$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND C.Playlist_Id= '$currentPL' AND P.user = '$test'";
+				
+				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = $username ";
+				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= $id";
+
+				//$stmt = $dbh->prepare("SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = ?")
+				//$stmt->bindParam(s, $username);
+				
+				//$stmt = $pdo->prepare($query);
+				//$stmt->execute([$username]);
+
+				
+				$name = array();
+				$paths = array();
+				$artists = array();
+				foreach ($conn->query($query) as $test) {
+					  $name[] = $test['name'];
+					  $paths[] = $test['path'];
+					  $artists[] = $test['artist'];
+				} 
+		
+
+	
+	?>
+
+	var namee= <?php echo json_encode($name); ?>;
+	var artist = <?php echo json_encode($artists)?>;
+	var paths = <?php echo json_encode($paths)?>;
+	var image = "";
+
 let track_list = [
     {
       name: "Test1",
@@ -449,15 +483,14 @@ let track_list = [
       artist: "test2",
       image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
       path: ""
-    },
-    {
-      name: "test3",
-      artist: "test3",
-      image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-      path: "",
-    },
+    }
   ];
-
+/*
+  for(var i=0; i < namee.length; i++){
+	 track_list[i].name = namee[i];
+	 track_list[i].artist = artist[i];
+	 track_list[i].path = paths[i]; 
+  }*/
 				
 				$('#searchBtn').on('keyup', function(){
 	
