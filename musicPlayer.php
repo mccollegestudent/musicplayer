@@ -45,21 +45,6 @@ GLOBAL $playlist_name;
 
 	</head>
 
-	<style>
-		th{ 
-			width: 80%;
-			height: 100%;
-			cursor: pointer;
-			color:#fff;
-		}
-		#d1{ /*-- scrowbar */
-			width: 80%;
-			height: 100%;
-			overflow:scroll;
-			overflow-x:hidden;
-		}
-	</style>
-
 	<body>
 
 		<?php
@@ -77,43 +62,21 @@ GLOBAL $playlist_name;
 			function playlistname($conn){
 				GLOBAL $playlist_name;
 				GLOBAL $username;
-				echo "Playlistname: ".$_SESSION["Playlist_Name"];
+				echo $_SESSION["Playlist_Name"];
 			}
+
 			//PHP Function to print songs in current playlist
 			function printSelectedPlaylist($conn){
-				//echo $_SESSION["last_playlist"];
-				//echo "<br>";
-				//echo $_SESSION["last_song"];
 
 			    GLOBAL $globalvar;
 				$essionVar = $_SESSION["username"] ;
-
-				//echo "global variable:".$globalvar;
-				//echo"<br>";
-				
-
-				//echo "Local variable:  ".$essionVar;
-				//echo "<br>";
 
 				$name = "music";
 				$id = 1;
 
 				GLOBAL $current_playlist;
-				$current_playlist = $_SESSION['last_playlist'];
-				//$query = "SELECT * FROM $name";
-				
+				$current_playlist = $_SESSION['last_playlist'];			
 				$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND C.Playlist_Id= '$current_playlist' AND P.user = '$essionVar'";
-				
-				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = $username ";
-				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= $id";
-
-				//$stmt = $dbh->prepare("SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = ?")
-				//$stmt->bindParam(s, $username);
-				
-				//$stmt = $pdo->prepare($query);
-				//$stmt->execute([$username]);
-
-				
 
 				foreach ($conn->query($query) as $row) {
 					$index = $row['id'];
@@ -141,13 +104,7 @@ GLOBAL $playlist_name;
 				$essionVar = $_SESSION["username"] ;
 
 				require_once "config.php";
-				//$query = "SELECT * FROM music";
-				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = 'username'";
-				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= 1";
 				$query = "SELECT * FROM playlist WHERE User = '$essionVar'";
-
-				
-
 				foreach ($conn->query($query) as $row) {
                    // echo 1;
 					$index = $row['Playlist_Id'];
@@ -235,7 +192,7 @@ GLOBAL $playlist_name;
 
 
 		<!-- control part -->
-				<div class="control_part">
+			<div class="control_part">
 			<div class="song_title"></div>
  			<div class="artist_name"></div>
 			<div class="control_buttons">
@@ -269,7 +226,7 @@ GLOBAL $playlist_name;
 					<div id = "d1">
 						<table class="table table-striped" style="width: 120%;">
 							<tr>				
-								<tbody >												
+								<tbody id="myTable">												
 									<?php
 											//echo "This is the new one";
 											printSelectedPlaylist($conn);
@@ -301,7 +258,7 @@ GLOBAL $playlist_name;
 					<div class = "col"> 
 						<div class = "card body">
 							<!-- TODO - Implement Drop Down-->
-							<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
+							<!-- <input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">-->
 							<br><br>
 						</div>
 					</div>
@@ -310,20 +267,12 @@ GLOBAL $playlist_name;
 				<div id = "d1" >
 					<table class="table table-striped" style="width: 120%; ">
 						<tr>
-							<tbody>
-								
+							<tbody id="myTable">
+								<!-- formart used in script for entery (id="myTable") line 234	-->	
 								<?php
 										printPlaylists($conn);
 									
 								?>
-
-								<!-- formart used in script for entery (id="myTable") line 234			
-								<div class="p_song active_song">
-									<p id="p_title">song name</p>
-									<p id="p_artist">artist name</p>
-									<button ><i class='bx bx-minus' ></i></button>
-								</div>
-								-->
 							<tbody>					
 
 						</tr>
@@ -333,11 +282,14 @@ GLOBAL $playlist_name;
 
 				<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
 						<button onclick="open_playlists()"><i class='zmdi zmdi-arrow-back'></i> </button>
-						<button id="addToPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
+						<button id="addToPlaylistBtn"   onclick="open_new_playlist()"><i class= 'bx bxs-plus-circle' ></i></button>
 
 				</div>
 						
 			</div>
+
+
+			
 
 			<!-- music Library songs -->
 
@@ -356,22 +308,12 @@ GLOBAL $playlist_name;
 					<div id = "d1" >
 						<table class="table table-striped" style="width: 120%; ">
 							<tr>
-							<tbody>
+							<tbody id="myTable">
 						
 							<!--<table class="table table-striped" style="width: 120%; ">-->
-								
-								<?php
-										printSongs($conn);
-									
-								?>
+							   
+								<?php printSongs($conn);?>
 
-								<!-- formart used in script for entery (id="myTable") line 234			
-								<div class="p_song active_song">
-									<p id="p_title">song name</p>
-									<p id="p_artist">artist name</p>
-									<button ><i class='bx bx-minus' ></i></button>
-								</div>
-								-->
 							<tbody>					
 
 						</tr>
@@ -389,19 +331,74 @@ GLOBAL $playlist_name;
 					</div>
 							
 			</div>
+
+				<!-- new playlist -->
+
+			<div class="newPlaylist"> 
+					
+					<p style="font-size:x-large"  style="color:orangered;">Enter playlistname</p>	
+					<div class = "row">
+						<div class = "col"> 
+
+
+								<div class = "card body">
+									<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
+									<br><br>
+								</div>
+
+
+						</div>
+					</div>	
+					
+					<!--<div id = "d1" >-->
+							<table class="table table-striped" style="width: 120%; ">
+								<tr>
+									<tbody id="myTable">
+								
+									<!--<table class="table table-striped" style="width: 120%; ">-->
+										
+										<?php
+												//printSongs($conn);
+												
+											
+										?>
+
+									<tbody>					
+
+								</tr>
+							</table>			
+	
+					<!--</div>-->
+	
+					<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
+							<button onclick="location.href='musicPlayer.php'"><i class='zmdi zmdi-arrow-back'></i> </button>
+							<button id="addNewPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
+	
+					</div>
+							
+			</div>			
 	</div>
 			
 		<!--  javascript switching pages -->
 
 			<script>
 
+				let newPlaylist = document.querySelector('.newPlaylist');
 				let musiclist = document.querySelector('.musiclist');
 				let playlist = document.querySelector('.playlist');
 				let playlists = document.querySelector('.playlists');
 				let options = document.querySelector('.options');
 
-				function open_playlist(){
 
+				
+				function open_new_playlist(){
+					clearTable()
+				
+					newPlaylist.classList.toggle('active');
+				}
+
+				function open_playlist(){
+					clearTable()
 				
 					playlist.classList.toggle('active');
 					//clearTable();
@@ -410,6 +407,7 @@ GLOBAL $playlist_name;
 				}
 
 				function open_playlists(){
+					clearTable()
 					//playlist.classList.toggle('active');
 					playlists.classList.toggle('active');
 				
@@ -418,6 +416,7 @@ GLOBAL $playlist_name;
 				}
 
 				function open_musiclist(){
+					clearTable()
 					musiclist.classList.toggle('active');
 			
 				}
@@ -439,20 +438,10 @@ GLOBAL $playlist_name;
 		
 			<?php
 	
-	$test = $_SESSION["username"];
-	$currentPL = $_SESSION["last_playlist"];
-	$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND C.Playlist_Id= '$currentPL' AND P.user = '$test'";
-				
-				//$query = "SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = $username ";
-				//$query = "SELECT * FROM music S, playlist_contents C  WHERE S.id=C.Song_Id AND C.Playlist_Id= $id";
-
-				//$stmt = $dbh->prepare("SELECT * FROM music S, playlist_contents C, playlist P  WHERE S.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND P.User = ?")
-				//$stmt->bindParam(s, $username);
-				
-				//$stmt = $pdo->prepare($query);
-				//$stmt->execute([$username]);
-
-				
+				$test = $_SESSION["username"];
+				$currentPL = $_SESSION["last_playlist"];
+				$query = "SELECT * FROM music M, playlist_contents C, playlist P WHERE M.id=C.Song_Id AND C.Playlist_Id=P.Playlist_Id AND C.Playlist_Id= '$currentPL' AND P.user = '$test'";
+					
 				$name = array();
 				$paths = array();
 				$artists = array();
@@ -464,7 +453,7 @@ GLOBAL $playlist_name;
 		
 
 	
-	?>
+			?>
 
 	var namee= <?php echo json_encode($name); ?>;
 	var artist = <?php echo json_encode($artists)?>;
@@ -497,12 +486,12 @@ let track_list = [
 					var value = $(this).val()
 					console.log('value:', value)
 					var data = searchTable(value, currPlaylistArray)
-					buildTable(data)
-				
+					//buildTable(data)
+					clearTable()
 				
 				})
 				
-				buildTable(currPlaylistArray)
+				//buildTable(currPlaylistArray)
 				
 				function searchTable(value, data){
 					var filterData = []
