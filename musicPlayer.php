@@ -115,8 +115,8 @@ GLOBAL $playlist_name;
                     print'<form action = "updateDB.php" method = "post">';
                         print '
                             <div class="p_song active_song" >'.
+									'<button name = "selectPlaylist'.$index.'"'.'"><i class='."'".'   '."'".' >sel</i></button>'.//zmdi zmdi-select-all
                                     '<p id="p_title">    '.$row['Playlist_Name'].' </p>'.
-
                                     '<input type = "hidden" name = "table" value ="music"/>'.
                                     '<input type = "hidden" name = "index" value ="'.$index.'"/>'.
                                     '<button name = "updatePlaylist'.$index.'"'.'"><i class='."'".'bx bx-minus'."'".' ></i></button>'.
@@ -336,13 +336,13 @@ GLOBAL $playlist_name;
 
 			<div class="newPlaylist"> 
 					
-					<p style="font-size:x-large"  style="color:orangered;">Enter playlistname</p>	
+					<p style="font-size:x-large"  style="color:orangered;">Enter Playlist Name</p>	
 					<div class = "row">
 						<div class = "col"> 
 
 
 								<div class = "card body">
-									<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
+									<input size="55" height="200" id = "playlistNameIb" class = "form control" type = "text" style="color: black;">
 									<br><br>
 								</div>
 
@@ -372,7 +372,7 @@ GLOBAL $playlist_name;
 	
 					<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
 							<button onclick="location.href='musicPlayer.php'"><i class='zmdi zmdi-arrow-back'></i> </button>
-							<button id="addNewPlaylistBtn"  onclick="open_musiclist()"><i class= 'bx bxs-plus-circle' ></i></button>
+							<button id="addToPlaylistBtn"  onclick="open_music_newlist()"><i class= 'bx bxs-plus-circle' ></i></button>
 	
 					</div>
 							
@@ -384,12 +384,21 @@ GLOBAL $playlist_name;
 			<script>
 
 				let newPlaylist = document.querySelector('.newPlaylist');
+
 				let musiclist = document.querySelector('.musiclist');
+				let musiclist2 = document.querySelector('.musiclist');
+
 				let playlist = document.querySelector('.playlist');
 				let playlists = document.querySelector('.playlists');
 				let options = document.querySelector('.options');
 
 
+				function open_music_newlist(){//big idea user creates playlist name playlist name is added to database correspondingly
+				
+				
+					newPlaylist.classList.toggle('active');//playlist form goes away //update current_playlist session somehow
+					musiclist.classList.toggle('active');//opens music table user can add song to current playlist "the new one"
+				}
 				
 				function open_new_playlist(){
 					//clearTable()
@@ -459,21 +468,6 @@ GLOBAL $playlist_name;
 	var artist = <?php echo json_encode($artists)?>;
 	var paths = <?php echo json_encode($paths)?>;
 	var image = "";
-
-let track_list = [
-    {
-      name: "Test1",
-      artist: "test1",
-      image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-      path: "test.mp3"
-    },
-    {
-      name: "test2",
-      artist: "test2",
-      image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-      path: ""
-    }
-  ];
 /*
   for(var i=0; i < namee.length; i++){
 	 track_list[i].name = namee[i];
