@@ -61,6 +61,21 @@
           echo "attempted to insert";
         }
 
+        if(isset($_POST['deletePlaylist'.$index]) &&(!empty($index))){
+          $delete = "DELETE FROM playlist_contents WHERE Playlist_Id = $current_playlist";
+          $stmt = $conn->prepare($delete);
+          $stmt->execute();
+          
+          $update = "UPDATE users SET last_playlist = NULL WHERE username = '$current_user'";
+          $stmt = $conn->prepare($update);
+          $stmt->execute();
+
+          $delete = "DELETE FROM playlist WHERE Playlist_Id = $current_playlist";
+          $stmt = $conn->prepare($delete);
+          $stmt->execute();
+
+          $_SESSION["Playlist_Name"] = "No Selected Playlist";
+        }
 
 
       

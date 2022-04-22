@@ -3,13 +3,19 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2022 at 04:45 AM
+-- Generation Time: Apr 22, 2022 at 11:42 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.4
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `demo`
@@ -43,7 +49,7 @@ INSERT INTO `music` (`id`, `name`, `artist`, `album`, `genre`, `yearReleased`, `
 (4, 'Blue', 'Eiffel 65', 'Blue (Da Ba Dee)', 'Pop', '1998', 'MusicLibrary\\Blue.mp3', '2022-04-21 21:42:41'),
 (5, 'Carmelldansen', 'Caramell', 'Supergot', 'Pop', '2001', 'MusicLibrary\\Carmelldansen.mp3', '2022-04-21 21:44:54'),
 (6, 'Nuthin', 'Lacrae', 'Anomaly', 'Rap', '2014', 'MusicLibrary\\Nuthin', '2022-04-21 21:54:32'),
-(7, 'I''ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'MusicLibrary\\I''ll Find You.mp3', '2022-04-21 21:54:32'),
+(7, 'I\'ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'MusicLibrary\\I\'ll Find You.mp3', '2022-04-21 21:54:32'),
 (8, 'This is Life', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'MusicLibrary\\This is Life.mp3', '2022-04-21 21:54:32'),
 (9, 'Yes Song', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'MusicLibrary\\Yes Song.mp3', '2022-04-21 21:54:32'),
 (10, 'Diamonds', 'GAMVI', 'Diamonds', 'Dance', '2017', 'MusicLibrary\\Diamonds.mp3', '2022-04-21 21:54:32'),
@@ -115,19 +121,19 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
-  `last_song` varchar(50),
-  `last_position_lat` float NOT NULL,
+  `last_song` varchar(50) DEFAULT NULL,
   `last_position_long` float NOT NULL,
-  `last_playlist` int(11)
+  `last_position_lat` float NOT NULL,
+  `last_playlist` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `last_song`, `last_position_lat`, `last_position_long`, `last_playlist`) VALUES
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `last_song`, `last_position_long`, `last_position_lat`, `last_playlist`) VALUES
 (2, 'b', '$2y$10$hriax3Yyovp.Jy3mFhUU9uhMFD747jBiWTCdgQCbOG40iTjwGliwq', '2022-04-17 23:41:34', NULL, 0, 0, NULL),
-(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28', 'All Star', 0, 0, 1),
+(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28', 'All Star', 28.562, -81.1968, 1),
 (4, 'filler', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-19 19:55:10', NULL, 0, 0, NULL);
 
 --
@@ -212,3 +218,7 @@ ALTER TABLE `users`
   ADD CONSTRAINT `Last Playlist` FOREIGN KEY (`last_playlist`) REFERENCES `playlist` (`Playlist_Id`),
   ADD CONSTRAINT `Last Song` FOREIGN KEY (`last_song`) REFERENCES `music` (`name`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

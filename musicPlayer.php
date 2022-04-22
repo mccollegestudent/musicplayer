@@ -115,11 +115,11 @@ GLOBAL $playlist_name;
                     print'<form action = "updateDB.php" method = "post">';
                         print '
                             <div class="p_song active_song" >'.
-									'<button name = "selectPlaylist'.$index.'"'.'"><i class='."'".'   '."'".' >sel</i></button>'.//zmdi zmdi-select-all
+									'<button name = "updatePlaylist'.$index.'"'.'"><i class='."'".'   '."'".' >sel</i></button>'.//zmdi zmdi-select-all
                                     '<p id="p_title">    '.$row['Playlist_Name'].' </p>'.
                                     '<input type = "hidden" name = "table" value ="music"/>'.
                                     '<input type = "hidden" name = "index" value ="'.$index.'"/>'.
-                                    '<button name = "updatePlaylist'.$index.'"'.'"><i class='."'".'bx bx-minus'."'".' ></i></button>'.
+                                    '<button name = "deletePlaylist'.$index.'"'.'"><i class='."'".'bx bx-minus'."'".' ></i></button>'.
                             '</div>
                             ';
                     print'</form >';
