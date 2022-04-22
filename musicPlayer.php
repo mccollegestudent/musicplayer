@@ -70,7 +70,7 @@ function updatePlaylist($input){
 			function playlistname($conn){
 				GLOBAL $globalvar;
 				GLOBAL $current_playlist;
-
+				GLOBAL $playlist_name;
 
 				$query = "SELECT * FROM playlist WHERE Playlist_Id = '$current_playlist'";
 				foreach ($conn->query($query) as $result) {
@@ -252,6 +252,12 @@ function updatePlaylist($input){
 				</div>
 			</div>
 		</div>
+				<div class="control_buttons">
+						<div class="range_slider">
+							<input type="range" min="0" max="100" id="slider" value="0">
+							<p>3:00</p>
+						</div>
+
 
 
 		<!-- playlist songs -->
@@ -301,6 +307,7 @@ function updatePlaylist($input){
 				<div class = "row">
 					<div class = "col"> 
 						<div class = "card body">
+							<!-- TODO - Implement Drop Down-->
 							<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
 							<br><br>
 						</div>

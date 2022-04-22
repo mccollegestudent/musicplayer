@@ -19,9 +19,10 @@
         $stmt = NULL;
       
         if(isset($_POST['deleteBtn'.$index]) &&(!empty($index))){
-            $delete = "DELETE FROM $table WHERE id = '$index'";
-            $stmt = $conn->prepare($delete);
-          // $stmt->execute();
+          $delete = "DELETE FROM playlist_contents WHERE Playlist_Id = $current_playlist AND Song_Id = $index";
+          $stmt = $conn->prepare($delete);
+          $stmt->execute();
+          echo "attempted to delete";
         }
 
 
@@ -30,8 +31,15 @@
           $conn->query($sql);
 
           $_SESSION["last_playlist"] = $index;
-          echo $_SESSION["last_playlist"];
-      }
+          //echo $_SESSION["last_playlist"];
+        }
+
+        if(isset($_POST['addBtn'.$index]) &&(!empty($index))){
+          $insert = "INSERT INTO `playlist_contents` (`Playlist_Id`, `Song_Id`) VALUES ('$current_playlist', '$index')";
+          $stmt = $conn->prepare($insert);
+          $stmt->execute();
+          echo "attempted to insert";
+        }
 
 
 
