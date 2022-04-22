@@ -333,7 +333,7 @@ GLOBAL $playlist_name;
 			</div>
 
 				<!-- new playlist -->
-
+			<form action = "updateDB.php" method = "post">
 			<div class="newPlaylist"> 
 					
 					<p style="font-size:x-large"  style="color:orangered;">Enter Playlist Name</p>	
@@ -342,7 +342,7 @@ GLOBAL $playlist_name;
 
 
 								<div class = "card body">
-									<input size="55" height="200" id = "playlistNameIb" class = "form control" type = "text" style="color: black;">
+									<input size="55" height="200" id = "playlistNameIb" name = "pName" class = "form control" type = "text" style="color: black;">
 									<br><br>
 								</div>
 
@@ -372,11 +372,15 @@ GLOBAL $playlist_name;
 	
 					<div class="p_song active_song">   <!--last panel on playlit with back and add buttons-->
 							<button onclick="location.href='musicPlayer.php'"><i class='zmdi zmdi-arrow-back'></i> </button>
-							<button id="addToPlaylistBtn"  onclick="open_music_newlist()"><i class= 'bx bxs-plus-circle' ></i></button>
+							<!--<button id="addToPlaylistBtn"  onclick="open_music_newlist()"><i class= 'bx bxs-plus-circle' ></i></button>-->
+							<input type = "hidden" name = "table" value ="music"/>
+							<input type = "hidden" name = "index" value = 1/>
+							<button name = "addPlaylist"><i class= 'bx bxs-plus-circle'></i></button>
 	
 					</div>
 							
-			</div>			
+			</div>
+			</form>			
 	</div>
 			
 		<!--  javascript switching pages -->

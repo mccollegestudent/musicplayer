@@ -77,6 +77,21 @@
           $_SESSION["Playlist_Name"] = "No Selected Playlist";
         }
 
+        if(isset($_POST['addPlaylist'])){
+          $name = $_POST['pName'];
+          echo "Trying to add playlist with name ".$name;
+
+          $add = "INSERT INTO playlist (User, Playlist_Name) VALUES ('$current_user', '$name')";
+          $stmt = $conn->prepare($add);
+          $stmt->execute();
+
+          $query = "SELECT * FROM playlist WHERE User = '$current_user' AND Playlist_Name = '$name'";
+          foreach ($conn->query($query) as $result) {
+            $_SESSION["last_playlist"] = $result['Playlist_Id'];
+            $_SESSION["Playlist_Name"] = $result['Playlist_Name'];
+          }
+          echo "New Id is ".$_SESSION["last_playlist"];
+        }
 
       
       if ($table == 'music')
