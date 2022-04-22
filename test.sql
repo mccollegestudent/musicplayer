@@ -43,11 +43,26 @@ CREATE TABLE `music` (
 --
 
 INSERT INTO `music` (`id`, `name`, `artist`, `album`, `genre`, `yearReleased`, `path`, `created_at`) VALUES
-(1, 'All Star', 'Smash Mouth', 'Astro Lounge', 'Pop', '1999', '', '2022-04-17 23:54:22'),
-(2, 'Nuthin', 'Lecrae ', 'Anomaly', 'rap', '2014', 'e', '2022-04-18 00:08:21'),
-(8, 'This Is Life ', 'KB ', 'HisGloryAlone', 'hiphop', '2020', 'f', '2022-04-18 00:10:40'),
-(9, 'Sandstorm', 'Darude', 'Before the Storm', 'EDM', '2000', 'g', '2022-04-18 00:10:40'),
-(10, 'a', 'a', 'a', 'a', 'a', 'a', '2022-04-18 21:51:12');
+(1, 'Never Gonna Give You Up', 'Rick Astley', 'Whenever You Need Somebody', 'Pop', '1987', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Never Gonna Give You Up.mp3', '2022-04-21 21:34:28'),
+(2, 'Sandstorm', 'Darude', 'Before The Storm', 'EDM', '2000', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Sandstorm.mp3', '2022-04-21 21:38:01'),
+(3, 'All Star', 'Smash Mouth', 'Astro Lounge', 'Pop', '1999', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\All Star.mp3', '2022-04-21 21:41:15'),
+(4, 'Blue', 'Eiffel 65', 'Blue (Da Ba Dee)', 'Pop', '1998', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Blue.mp3', '2022-04-21 21:42:41'),
+(5, 'Carmelldansen', 'Caramell', 'Supergot', 'Pop', '2001', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Carmelldansen', '2022-04-21 21:44:54'),
+(6, 'Nuthin', 'Lacrae', 'Anomaly', 'Rap', '2014', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Nuthin.mp3', '2022-04-21 21:54:32'),
+(7, 'I\'ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\I\'ll Find You', '2022-04-21 21:54:32'),
+(8, 'This is Life', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\This is Life', '2022-04-21 21:54:32'),
+(9, 'Yes Song', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Yes Song', '2022-04-21 21:54:32'),
+(10, 'Diamonds', 'GAMVI', 'Diamonds', 'Dance', '2017', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Diamonds.mp3', '2022-04-21 21:54:32'),
+(11, 'Make Believe', 'Kero Kero Bonito', 'Time n Place', 'Alternative', '2018', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Make Belive.mp3', '2022-04-21 21:54:32'),
+(12, 'Cat', 'C418', 'Minecraft, Volume Alpha', 'EDM', '2011', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Cat.mp3', '2022-04-21 21:54:32'),
+(13, 'Price of a Mile', 'Sabaton', 'Art of War', 'Rock', '2008', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Price of a Mile.mp3', '2022-04-21 21:54:32'),
+(14, 'Glitter & Gold', 'Barns Courtney', 'The Attractions of Youth', 'Alternative', '2012', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Glitter & Gold.mp3', '2022-04-21 21:54:32'),
+(15, 'Dancing in the Moon Light', 'King Harvest', 'Dancing on the Moon Light', 'Rock', '1972', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Dancing in the Moon Light.mp3', '2022-04-21 21:54:32'),
+(16, 'Afraid to Shoot Strangers', 'Iron Maiden', 'Fear of the Dark', 'Rock', '1992', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Afraid to Shoot Strangers.mp3', '2022-04-21 21:54:32'),
+(17, 'Just Like You', 'NF', 'CLOUDS (THE MIXTAPE)', 'Rap', '2021', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Just Like You.mp3', '2022-04-21 21:54:32'),
+(18, 'Waltz in E Minor, Op. Posth., B. 56', 'Frederic Chopin', 'Arthur Rubinstien: The Chopin Collection', 'Classical', '2018', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Waltz in E Minor, Op. Posth., B. 56.mp3', '2022-04-21 21:54:32'),
+(19, 'Na Na Na (Na Na Na Na Na Na Na Na Na)', 'My Chemical Romance', 'Danger Days: The True Lives of the Fabulos Killjoys', 'Rock', '2010', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Na Na Na (Na Na Na Na Na Na Na Na Na).mp3', '2022-04-21 21:54:32'),
+(20, 'Hallowed Be Thy Name', 'Iron Maiden', 'The Number of the Beast', 'Rock', '1982', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Hallowed Be Thy Name.mp3', '2022-04-21 21:54:32');
 
 -- --------------------------------------------------------
 
@@ -130,10 +145,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `last_song`, `l
 --
 ALTER TABLE `music`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `artist` (`artist`),
-  ADD UNIQUE KEY `album` (`album`),
-  ADD UNIQUE KEY `genre` (`genre`),
-  ADD UNIQUE KEY `yearReleased` (`yearReleased`),
   ADD UNIQUE KEY `path` (`path`),
   ADD KEY `name` (`name`);
 
