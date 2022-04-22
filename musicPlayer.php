@@ -267,7 +267,7 @@ GLOBAL $playlist_name;
 				<div id = "d1" >
 					<table class="table table-striped" style="width: 120%; ">
 						<tr>
-							<tbody id="myTable">
+							<tbody>
 								<!-- formart used in script for entery (id="myTable") line 234	-->	
 								<?php
 										printPlaylists($conn);
@@ -308,7 +308,7 @@ GLOBAL $playlist_name;
 					<div id = "d1" >
 						<table class="table table-striped" style="width: 120%; ">
 							<tr>
-							<tbody id="myTable">
+							<tbody">
 						
 							<!--<table class="table table-striped" style="width: 120%; ">-->
 							   
@@ -353,7 +353,7 @@ GLOBAL $playlist_name;
 					<!--<div id = "d1" >-->
 							<table class="table table-striped" style="width: 120%; ">
 								<tr>
-									<tbody id="myTable">
+									<tbody>
 								
 									<!--<table class="table table-striped" style="width: 120%; ">-->
 										
@@ -392,13 +392,13 @@ GLOBAL $playlist_name;
 
 				
 				function open_new_playlist(){
-					clearTable()
+					//clearTable()
 				
 					newPlaylist.classList.toggle('active');
 				}
 
 				function open_playlist(){
-					clearTable()
+					//clearTable()
 				
 					playlist.classList.toggle('active');
 					//clearTable();
@@ -407,7 +407,7 @@ GLOBAL $playlist_name;
 				}
 
 				function open_playlists(){
-					clearTable()
+					//clearTable()
 					//playlist.classList.toggle('active');
 					playlists.classList.toggle('active');
 				
@@ -416,7 +416,7 @@ GLOBAL $playlist_name;
 				}
 
 				function open_musiclist(){
-					clearTable()
+					//clearTable()
 					musiclist.classList.toggle('active');
 			
 				}

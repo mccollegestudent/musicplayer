@@ -177,7 +177,33 @@ body{
 .playlist .p_song #p_title{
 	font-size: 20px;
 }
+.playlist .p_song #p_artist{
+	position: absolute;
+	bottom: 6px;
+	left: 15px;
+	font-size: 11px;
+}
 
+.playlist .p_song #p_album{
+	position: absolute;
+	bottom: 6px;
+	left: 100px;
+	font-size: 11px;
+}
+
+.playlist .p_song #p_genre{
+	position: absolute;
+	bottom: 6px;
+	left: 200px;
+	font-size: 11px;
+}
+
+.playlist .p_song #p_year{
+	position: absolute;
+	bottom: 6px;
+	left: 300px;
+	font-size: 11px;
+}
 .playlist .p_song button{
 	height: 35px;
 	width: 35px;
@@ -214,6 +240,9 @@ body{
 	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,
 	            0.1px 8px 8px 2px rgba(0,0,0,0.2);
 }
+
+
+
 
 /*range slider part*/
 .range_slider{
@@ -451,6 +480,8 @@ input[type=range]::-webkit-slider-thumb{
 	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,
 	            0.1px 8px 8px 2px rgba(0,0,0,0.2);
 }
+
+
 
 /*newPlaylist*/
 .newPlaylist{
