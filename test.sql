@@ -3,19 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2022 at 04:02 AM
+-- Generation Time: Apr 22, 2022 at 04:33 AM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.1.32
+-- PHP Version: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `demo`
@@ -43,26 +37,26 @@ CREATE TABLE `music` (
 --
 
 INSERT INTO `music` (`id`, `name`, `artist`, `album`, `genre`, `yearReleased`, `path`, `created_at`) VALUES
-(1, 'Never Gonna Give You Up', 'Rick Astley', 'Whenever You Need Somebody', 'Pop', '1987', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Never Gonna Give You Up.mp3', '2022-04-21 21:34:28'),
-(2, 'Sandstorm', 'Darude', 'Before The Storm', 'EDM', '2000', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Sandstorm.mp3', '2022-04-21 21:38:01'),
-(3, 'All Star', 'Smash Mouth', 'Astro Lounge', 'Pop', '1999', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\All Star.mp3', '2022-04-21 21:41:15'),
-(4, 'Blue', 'Eiffel 65', 'Blue (Da Ba Dee)', 'Pop', '1998', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Blue.mp3', '2022-04-21 21:42:41'),
-(5, 'Carmelldansen', 'Caramell', 'Supergot', 'Pop', '2001', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Carmelldansen', '2022-04-21 21:44:54'),
-(6, 'Nuthin', 'Lacrae', 'Anomaly', 'Rap', '2014', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Nuthin.mp3', '2022-04-21 21:54:32'),
-(7, 'I\'ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\I\'ll Find You', '2022-04-21 21:54:32'),
-(8, 'This is Life', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\This is Life', '2022-04-21 21:54:32'),
-(9, 'Yes Song', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Yes Song', '2022-04-21 21:54:32'),
-(10, 'Diamonds', 'GAMVI', 'Diamonds', 'Dance', '2017', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Diamonds.mp3', '2022-04-21 21:54:32'),
-(11, 'Make Believe', 'Kero Kero Bonito', 'Time n Place', 'Alternative', '2018', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Make Belive.mp3', '2022-04-21 21:54:32'),
-(12, 'Cat', 'C418', 'Minecraft, Volume Alpha', 'EDM', '2011', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Cat.mp3', '2022-04-21 21:54:32'),
-(13, 'Price of a Mile', 'Sabaton', 'Art of War', 'Rock', '2008', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Price of a Mile.mp3', '2022-04-21 21:54:32'),
-(14, 'Glitter & Gold', 'Barns Courtney', 'The Attractions of Youth', 'Alternative', '2012', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Glitter & Gold.mp3', '2022-04-21 21:54:32'),
-(15, 'Dancing in the Moon Light', 'King Harvest', 'Dancing on the Moon Light', 'Rock', '1972', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Dancing in the Moon Light.mp3', '2022-04-21 21:54:32'),
-(16, 'Afraid to Shoot Strangers', 'Iron Maiden', 'Fear of the Dark', 'Rock', '1992', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Afraid to Shoot Strangers.mp3', '2022-04-21 21:54:32'),
-(17, 'Just Like You', 'NF', 'CLOUDS (THE MIXTAPE)', 'Rap', '2021', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Just Like You.mp3', '2022-04-21 21:54:32'),
-(18, 'Waltz in E Minor, Op. Posth., B. 56', 'Frederic Chopin', 'Arthur Rubinstien: The Chopin Collection', 'Classical', '2018', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Waltz in E Minor, Op. Posth., B. 56.mp3', '2022-04-21 21:54:32'),
-(19, 'Na Na Na (Na Na Na Na Na Na Na Na Na)', 'My Chemical Romance', 'Danger Days: The True Lives of the Fabulos Killjoys', 'Rock', '2010', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Na Na Na (Na Na Na Na Na Na Na Na Na).mp3', '2022-04-21 21:54:32'),
-(20, 'Hallowed Be Thy Name', 'Iron Maiden', 'The Number of the Beast', 'Rock', '1982', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Hallowed Be Thy Name.mp3', '2022-04-21 21:54:32');
+(1, 'Never Gonna Give You Up', 'Rick Astley', 'Whenever You Need Somebody', 'Pop', '1987', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Neve', '2022-04-21 21:34:28'),
+(2, 'Sandstorm', 'Darude', 'Before The Storm', 'EDM', '2000', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Sand', '2022-04-21 21:38:01'),
+(3, 'All Star', 'Smash Mouth', 'Astro Lounge', 'Pop', '1999', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\All ', '2022-04-21 21:41:15'),
+(4, 'Blue', 'Eiffel 65', 'Blue (Da Ba Dee)', 'Pop', '1998', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Blue', '2022-04-21 21:42:41'),
+(5, 'Carmelldansen', 'Caramell', 'Supergot', 'Pop', '2001', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Carm', '2022-04-21 21:44:54'),
+(6, 'Nuthin', 'Lacrae', 'Anomaly', 'Rap', '2014', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Nuth', '2022-04-21 21:54:32'),
+(7, 'I\'ll Find You', 'Lacrae', 'All Things Work Together', 'Rap', '2017', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\I\'ll', '2022-04-21 21:54:32'),
+(8, 'This is Life', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\This', '2022-04-21 21:54:32'),
+(9, 'Yes Song', 'KB', 'HisGloryAlone', 'Hip Hop', '2020', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Yes ', '2022-04-21 21:54:32'),
+(10, 'Diamonds', 'GAMVI', 'Diamonds', 'Dance', '2017', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Diam', '2022-04-21 21:54:32'),
+(11, 'Make Believe', 'Kero Kero Bonito', 'Time n Place', 'Alternative', '2018', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Make', '2022-04-21 21:54:32'),
+(12, 'Cat', 'C418', 'Minecraft, Volume Alpha', 'EDM', '2011', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Cat.', '2022-04-21 21:54:32'),
+(13, 'Price of a Mile', 'Sabaton', 'Art of War', 'Rock', '2008', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Pric', '2022-04-21 21:54:32'),
+(14, 'Glitter & Gold', 'Barns Courtney', 'The Attractions of Youth', 'Alternative', '2012', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Glit', '2022-04-21 21:54:32'),
+(15, 'Dancing in the Moon Light', 'King Harvest', 'Dancing on the Moon Light', 'Rock', '1972', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Danc', '2022-04-21 21:54:32'),
+(16, 'Afraid to Shoot Strangers', 'Iron Maiden', 'Fear of the Dark', 'Rock', '1992', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Afra', '2022-04-21 21:54:32'),
+(17, 'Just Like You', 'NF', 'CLOUDS (THE MIXTAPE)', 'Rap', '2021', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Just', '2022-04-21 21:54:32'),
+(18, 'Waltz in E Minor, Op. Posth., B. 56', 'Frederic Chopin', 'Arthur Rubinstien: The Chopin Collection', 'Classical', '2018', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Walt', '2022-04-21 21:54:32'),
+(19, 'Na Na Na (Na Na Na Na Na Na Na Na Na)', 'My Chemical Romance', 'Danger Days: The True Lives of the Fabulos Killjoy', 'Rock', '2010', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Na N', '2022-04-21 21:54:32'),
+(20, 'Hallowed Be Thy Name', 'Iron Maiden', 'The Number of the Beast', 'Rock', '1982', 'C:\\xampp\\htdocs\\musicplayer-main\\MusicLibrary\\Hall', '2022-04-21 21:54:32');
 
 -- --------------------------------------------------------
 
@@ -121,10 +115,10 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
-  `last_song` varchar(50) NOT NULL,
+  `last_song` varchar(50) DEFAULT NULL,
   `last_position_lat` float NOT NULL,
   `last_position_long` float NOT NULL,
-  `last_playlist` int(11)
+  `last_playlist` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -132,9 +126,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `last_song`, `last_position_lat`, `last_position_long`, `last_playlist`) VALUES
-(2, 'b', '$2y$10$hriax3Yyovp.Jy3mFhUU9uhMFD747jBiWTCdgQCbOG40iTjwGliwq', '2022-04-17 23:41:34', 'All Star', 0, 0, 2),
-(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28', 'All Star', 0, 0, 1),
-(4, 'filler', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-19 19:55:10', 'All Star', 0, 0, 4);
+(2, 'b', '$2y$10$hriax3Yyovp.Jy3mFhUU9uhMFD747jBiWTCdgQCbOG40iTjwGliwq', '2022-04-17 23:41:34', NULL, 0, 0, NULL),
+(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28', NULL, 0, 0, NULL),
+(4, 'filler', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-19 19:55:10', NULL, 0, 0, NULL);
 
 --
 -- Indexes for dumped tables
@@ -180,7 +174,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `music`
 --
 ALTER TABLE `music`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `playlist`
@@ -218,7 +212,3 @@ ALTER TABLE `users`
   ADD CONSTRAINT `Last Playlist` FOREIGN KEY (`last_playlist`) REFERENCES `playlist` (`Playlist_Id`),
   ADD CONSTRAINT `Last Song` FOREIGN KEY (`last_song`) REFERENCES `music` (`name`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
