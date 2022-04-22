@@ -27,7 +27,7 @@
 
 
         if(isset($_POST['updatePlaylist'.$index]) &&(!empty($index))){
-          $sql = "UPDATE user SET last_playlist = '$index' WHERE username = '$current_user'";
+          $sql = "UPDATE users SET last_playlist = '$index' WHERE username = '$current_user'";
           $conn->query($sql);
 
           $_SESSION["last_playlist"] = $index;
