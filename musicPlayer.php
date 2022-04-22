@@ -252,14 +252,7 @@ function updatePlaylist($input){
 				</div>
 			</div>
 		</div>
-				<div class="control_buttons">
-						<div class="range_slider">
-							<input type="range" min="0" max="100" id="slider" value="0">
-							<p>3:00</p>
-						</div>
-
-
-
+		
 		<!-- playlist songs -->
 				<div class="playlist">  <!-- change this to show only playlist names routed to the edit button-->
 					
