@@ -41,9 +41,23 @@
         }
 
         if(isset($_POST['addBtn'.$index]) &&(!empty($index))){
-          $insert = "INSERT INTO `playlist_contents` (`Playlist_Id`, `Song_Id`) VALUES ('$current_playlist', '$index')";
-          $stmt = $conn->prepare($insert);
-          $stmt->execute();
+          $bool = 1;
+          $query = "SELECT * FROM playlist_contents WHERE Playlist_Id = $current_playlist AND Song_Id = $index";
+
+          foreach ($conn->query($query) as $row) {
+
+            if($row['Song_Id']){
+               $bool = 0;
+            }
+
+          }
+
+          if($bool){
+            $insert = "INSERT INTO `playlist_contents` (`Playlist_Id`, `Song_Id`) VALUES ('$current_playlist', '$index')";
+            $stmt = $conn->prepare($insert);
+            $stmt->execute();
+            }
+       
           echo "attempted to insert";
         }
 
