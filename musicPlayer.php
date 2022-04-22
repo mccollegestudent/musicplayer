@@ -203,7 +203,7 @@ GLOBAL $playlist_name;
 				</div>
 
 				<div class="main_btns">
-					<button id="loop"><i class='zmdi zmdi-repeat'onclick="toggleLoopSong()" ></i></button>
+					<div class = "looop"><div><button id="loop" class="clicked"><i class='zmdi zmdi-repeat'onclick="toggleLoopSong()" ></i></button></div></div>
 					<button onclick="playpauseTrack()" class = 'test'><i class='bx bx-play' ></i></button>
 					<button id="next"><i class='bx bx-skip-next' onclick="nextTrack()"></i></button>
 				</div>

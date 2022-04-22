@@ -5,7 +5,7 @@ let track_artist = document.querySelector(".artist_name");
   
 let playpause_btn = document.querySelector(".test");
 let next_btn = document.querySelector(".bx bx-skip-next");
-let prev_btn = document.querySelector(".bx bx-skip-next");
+let loopButton = document.querySelector(".looop");
   
 let seek_slider = document.querySelector(".seek_slider");
 let volume_slider = document.querySelector(".volume_slider");
@@ -107,6 +107,12 @@ let next_track = document.createElement('audio');
 
   function toggleLoopSong(){
     loopSong = !(loopSong);
+    if(loopSong){
+      loopButton.innerHTML = '<div class="clicked"><button id="loop" class="clicked"><i class="zmdi zmdi-repeat"onclick="toggleLoopSong()" ></i></button></div>';
+    }
+    else{
+      loopButton.innerHTML = '<div><button id="loop" class="clicked"><i class="zmdi zmdi-repeat"onclick="toggleLoopSong()" ></i></button></div>';
+    }
     console.log(loopSong);
   }
 

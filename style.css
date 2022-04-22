@@ -57,7 +57,7 @@ body{
 	background: rgba(0,0,0,0.08);
 	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2);
 }
-.main .top_bar button:hover,.main .control_part .control_buttons .main_btns button:hover{
+.main .top_bar button:hover,.main .control_part .control_buttons .main_btns button:hover, .main .control_part .control_buttons .main_btns .clicked button{
 	background: linear-gradient(to right, #FF5722, #FF7043);
 	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,
 	            0.1px 8px 8px 2px rgba(0,0,0,0.2);
@@ -133,6 +133,25 @@ body{
 	background: rgba(0,0,0,0.08);
 	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2);
 }
+
+.main .control_part .control_buttons .main_btns .clicked button{
+	height: 55px;
+	width: 55px;
+	border-radius: 50%;
+	font-size: 30px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 18px;
+	background: linear-gradient(to right, #FF5722, #FF7043);
+	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,
+	            0.1px 8px 8px 2px rgba(0,0,0,0.2);
+}
+
+
 .main .control_part .control_buttons .main_btns #play_btn{
 	background: linear-gradient(to right, #FF5722, #FF7043);
 	box-shadow: 0.1px 8px 8px 2px rgba(0,0,0,0.2) inset,

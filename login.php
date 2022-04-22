@@ -14,10 +14,11 @@ require_once "config.php";
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
- 
+ $last_lat = 7;
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+    $last_lat = (double)$_POST['lat'];
+    $last_long = (double)$_POST['long'];
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
@@ -63,6 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             foreach ($conn->query($query) as $result) {
                                 $_SESSION["last_song"] = $result['last_song'];
                                 $_SESSION["last_playlist"] = $result['last_playlist'];
+                                
                             }
                             $temp = $_SESSION["last_playlist"];
 
@@ -76,6 +78,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             //getLocation();
+
+                            $sql = "UPDATE users SET last_position_lat = '$last_lat' WHERE username = '$username'";
+                            $conn->query($sql);
+                            
+                            $sql = "UPDATE users SET last_position_long = '$last_long' WHERE username = '$username'";
+                            $conn->query($sql);
+                  
+                  
 
                             // Redirect user to music player page
                             header("location: musicPlayer.php");
@@ -136,7 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <p></p>
     <div class="wrapper">
         <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
+        <p>Please fill in your credentials to login.<?php echo $last_lat?></p>
 
         <?php 
         if(!empty($login_err)){
@@ -155,34 +165,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
+            <input id= "long" type="hidden" placeholder="0" name="long" value="7">
+            <input id = "lat" type="hidden" placeholder="0" name="lat" value="7">
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
+
     </div>
 
-    <!--
+    
     <script>
-        var x = document.getElementById("demo");
-        function getLocation() {
+        var x = document.getElementById("long");
+        var y = document.getElementById("lat")
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
             } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
+                x.innerHTML = "0";
+                y.innerHTML = "0";
             }
-        }
+        
 
         function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
+        x.value = position.coords.latitude;
+        y.value = position.coords.longitude;
         }
 
 
 
     </script>
-    */
-    -->
+    
 
 </body>
 </html>
