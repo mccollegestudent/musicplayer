@@ -301,27 +301,38 @@ GLOBAL $playlist_name;
 			
 
 			<!-- music Library songs -->
-
+			<script src='test.js'></script>
 			<div class="musiclist"> 
 					
 					<p style="font-size:x-large"  style="color:orangered;">musiclist</p>	
 					<div class = "row">
 						<div class = "col"> 
 							<div class = "card body">
-								<input size="55" height="200" id = "searchBtn" class = "form control" type = "text" style="color: black;">
+							<form action="ajax.php" method="post">	
+							
+							<label>Name/Artist/Album</label>
+							<input size="15" id = "search" height="50"  class = "form control" place-holder = "" value = "" type = "text" style="color: black;">								
+							
+								
+							<label>Genre/Year</label>
+							<input size="15" id = "oof" height="50"  class = "form control" place-holder = "" value = "" type = "text" style="color: black;">	
+
+								
+							</form>	
 								<br><br>
 							</div>
 						</div>
 					</div>	
 					
 					<div id = "d1" >
+					<div id ="display" class = "fuck"></div>
 						<table class="table table-striped" style="width: 120%; ">
 							<tr>
 							<tbody">
 						
 							<!--<table class="table table-striped" style="width: 120%; ">-->
 							   
-								<?php printSongs($conn);?>
+								
 
 							<tbody>					
 
@@ -384,8 +395,10 @@ GLOBAL $playlist_name;
 							<!--<button id="addToPlaylistBtn"  onclick="open_music_newlist()"><i class= 'bx bxs-plus-circle' ></i></button>-->
 							<input type = "hidden" name = "table" value ="music"/>
 							<input type = "hidden" name = "index" value = 1/>
-							<button name = "addPlaylist"><i class= 'bx bxs-plus-circle'></i></button>
-	
+							<button name = "addPlaylist" onclick = "open_playlist()"><i class= 'bx bxs-plus-circle'></i></button>
+
+
+							
 					</div>
 							
 			</div>
