@@ -101,6 +101,34 @@
           echo "New Id is ".$_SESSION["last_playlist"];
         }
 
+        if(isset($_POST['addPlaylistNEW'])){
+          $name = $_POST['pName'];
+          echo "Trying to add playlist with name ".$name;
+
+          $add = "INSERT INTO playlist (User, Playlist_Name) VALUES ('$current_user', '$name')";
+          $stmt = $conn->prepare($add);
+          $stmt->execute();
+
+          $query = "SELECT * FROM playlist WHERE User = '$current_user' AND Playlist_Name = '$name'";
+          foreach ($conn->query($query) as $result) {
+            $_SESSION["last_playlist"] = $result['Playlist_Id'];
+            $_SESSION["Playlist_Name"] = $result['Playlist_Name'];
+          }
+
+          $last = $_SESSION["last_playlist"];
+
+
+          $sql = "UPDATE users SET last_playlist = '$last' WHERE username = '$current_user'";
+          $conn->query($sql);
+
+          $sql = "UPDATE users SET isNew = 0 WHERE username = '$current_user'";
+          $conn->query($sql);
+
+          header("Location: newUserSongs.php");
+          exit();
+          echo "New Id is ".$_SESSION["last_playlist"];
+        }
+
       
       if ($table == 'music')
         header("Location: musicPlayer.php");;
