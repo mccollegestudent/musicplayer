@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 03:55 AM
+-- Generation Time: Apr 23, 2022 at 05:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -76,21 +76,6 @@ CREATE TABLE `playlist` (
   `Playlist_Name` varchar(30) CHARACTER SET utf8mb4 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `playlist`
---
-
-INSERT INTO `playlist` (`Playlist_Id`, `User`, `Playlist_Name`) VALUES
-(1, 'username', 'Vibes'),
-(2, 'b', 'Fill'),
-(3, 'username', 'Uhh'),
-(4, 'filler', 'Dab'),
-(9, 'username', 'Double Deck'),
-(10, 'test', 'My New'),
-(11, 'asdasd', 'AAAAA'),
-(12, 'asdasd', 'waa'),
-(14, 'newTest', 'newTest');
-
 -- --------------------------------------------------------
 
 --
@@ -101,23 +86,6 @@ CREATE TABLE `playlist_contents` (
   `Playlist_Id` int(11) NOT NULL,
   `Song_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `playlist_contents`
---
-
-INSERT INTO `playlist_contents` (`Playlist_Id`, `Song_Id`) VALUES
-(1, 9),
-(1, 1),
-(2, 8),
-(2, 10),
-(3, 1),
-(3, 2),
-(3, 8),
-(9, 6),
-(10, 6),
-(11, 12),
-(14, 1);
 
 -- --------------------------------------------------------
 
@@ -136,18 +104,6 @@ CREATE TABLE `users` (
   `last_playlist` int(11) DEFAULT NULL,
   `isNew` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `last_song`, `last_position_long`, `last_position_lat`, `last_playlist`, `isNew`) VALUES
-(2, 'b', '$2y$10$hriax3Yyovp.Jy3mFhUU9uhMFD747jBiWTCdgQCbOG40iTjwGliwq', '2022-04-17 23:41:34', NULL, 28.562, -81.1968, 2, 0),
-(3, 'username', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-18 19:20:28', 'All Star', 28.562, -81.1968, 1, 0),
-(4, 'filler', '$2y$10$QbXCJ2kDkOqLtsrFf9K37uFPhn7T07QtESu8hn5iV78zgNi0tcBoW', '2022-04-19 19:55:10', NULL, 0, 0, 4, 0),
-(5, 'test', '$2y$10$uszqAxOMxF2KVy70oG1k2.1gtvVYwRyXOXP/Z5eGnzQq6kOLkwFqG', '2022-04-22 18:22:23', 'All Star', 28.562, -81.1968, 10, 0),
-(6, 'asdasd', '$2y$10$1XXza/NM6rBrL8RWLI1XxOmIB2swT/crIk4EScI35dAz9VoUS0kYm', '2022-04-22 18:23:34', 'All Star', 28.562, -81.1968, 11, 0),
-(7, 'newTest', '$2y$10$CGggBNkSf3d11/KwExS7q.PrpZBCJYLh0ZQdjUo/idLMxe8LIOMyC', '2022-04-22 21:51:12', 'All Star', 28.562, -81.1968, 14, 1);
 
 --
 -- Indexes for dumped tables
@@ -199,13 +155,13 @@ ALTER TABLE `music`
 -- AUTO_INCREMENT for table `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `Playlist_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Playlist_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
