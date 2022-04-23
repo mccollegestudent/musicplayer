@@ -85,7 +85,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $sql = "UPDATE users SET last_position_long = '$last_long' WHERE username = '$username'";
                             $conn->query($sql);
                   
-                  
+                            $query = "SELECT * FROM users WHERE username = '$username'";
+                            foreach ($conn->query($query) as $result) {
+                                $isNew = $result['isNew'];
+                            }
+
+                            if($isNew){
+                                header("location: newUserPlaylist.php");
+                                exit();
+                            }
+
 
                             // Redirect user to music player page
                             header("location: musicPlayer.php");
